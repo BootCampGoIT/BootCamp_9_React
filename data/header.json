@@ -1,0 +1,8 @@
+[
+  { "name": "home", "path": "/", "key": "key1" },
+  { "name": "courses", "path": "/courses", "key": "key2" },
+  { "name": "groups", "path": "/groups", "key": "key3" },
+  { "name": "profile", "path": "/profile", "key": "key4" },
+  { "name": "sign up", "path": "/signup", "key": "key5" },
+  { "name": "sign in", "path": "/signin", "key": "key6" }
+]
