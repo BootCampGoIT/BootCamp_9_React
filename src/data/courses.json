@@ -2,6 +2,7 @@
   {
     "key": "key1",
     "name": "HTML/CSS",
+    "newCourse": true,
     "modules": [
       {
         "name": "Основы HTML. Часть 1",
@@ -23,6 +24,7 @@
   {
     "key": "key2",
     "name": "Java Script",
+    "newCourse": false,
     "modules": [
       {
         "name": "Переменные. Типы. Ветвления. Циклы",
@@ -44,6 +46,7 @@
   {
     "key": "key3",
     "name": "React JS",
+    "newCourse": false,
     "modules": [
       {
         "name": "Компоненты и коллекции",

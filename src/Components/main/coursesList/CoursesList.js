@@ -7,7 +7,7 @@ const CoursesList = ({ courses }) => {
     <ul>
       {courses.map((course) => (
         <li key={course.key}>
-          <Section title={course.name}>
+          <Section title={course.name} newCourse={course.newCourse}>
             <h3>Modules:</h3>
             <ModuleList modules={course.modules} />
           </Section>

@@ -1,10 +1,12 @@
 import CoursesList from "./coursesList/CoursesList";
 import PropTypes from "prop-types";
+import { MainContainer } from "./MainStyled";
+import themes from "../../themes";
 const Main = ({ courses }) => {
   return (
-    <main>
+    <MainContainer colors={themes["dark"].colors}>
       <CoursesList courses={courses} />
-    </main>
+    </MainContainer>
   );
 };
 

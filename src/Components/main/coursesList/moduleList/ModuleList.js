@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import sprite from "../../../../icons/courses/spite.svg";
 
 const ModuleList = ({ modules }) => {
   return (
@@ -14,7 +15,12 @@ const ModuleList = ({ modules }) => {
             frameBorder='0'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen></iframe>
-          <a href={moduleItem.repository}>Repository link</a>
+          <div>
+            <svg>
+              <use href={sprite + "#icon-link"} />
+            </svg>
+            <a href={moduleItem.repository}>Repository link</a>
+          </div>
         </li>
       ))}
     </ul>

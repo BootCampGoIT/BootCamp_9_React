@@ -1,9 +1,11 @@
-const Section = ({ title, children }) => {
+import { SectionContainer } from "./SectionStyled";
+
+const Section = ({ title, children, newCourse }) => {
   return (
-    <section>
-      <h2>{title}</h2>
+    <SectionContainer>
+      <h2>Course: {title}</h2>
       {children}
-    </section>
+    </SectionContainer>
   );
 };
 

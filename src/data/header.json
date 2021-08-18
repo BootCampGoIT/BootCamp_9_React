@@ -1,8 +1,28 @@
 [
-  { "name": "home", "path": "/", "key": "key1" },
-  { "name": "courses", "path": "/courses", "key": "key2" },
-  { "name": "groups", "path": "/groups", "key": "key3" },
-  { "name": "profile", "path": "/profile", "key": "key4" },
-  { "name": "sign up", "path": "/signup", "key": "key5" },
-  { "name": "sign in", "path": "/signin", "key": "key6" }
+  { "name": { "en": "home", "ru": "главная" }, "path": "/", "key": "key1" },
+  {
+    "name": { "en": "courses", "ru": "курсы" },
+    "path": "/courses",
+    "key": "key2"
+  },
+  {
+    "name": { "en": "groups", "ru": "групи" },
+    "path": "/groups",
+    "key": "key3"
+  },
+  {
+    "name": { "en": "profile", "ru": "профиль" },
+    "path": "/profile",
+    "key": "key4"
+  },
+  {
+    "name": { "en": "sign up", "ru": "зарегистрироваться" },
+    "path": "/signup",
+    "key": "key5"
+  },
+  {
+    "name": { "en": "sign in", "ru": "войти" },
+    "path": "/signin",
+    "key": "key6"
+  }
 ]
