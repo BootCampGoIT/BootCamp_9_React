@@ -15,6 +15,7 @@ const dark = {
     buttonText: "#ffffff",
     attention: "#dc143c",
     edit: "#14dc6783",
+    folder: "#ece910",
   },
 };
 

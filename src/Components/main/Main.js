@@ -1,11 +1,14 @@
 import CoursesList from "./coursesList/CoursesList";
 import PropTypes from "prop-types";
 import { MainContainer } from "./MainStyled";
-import themes from "../../themes";
+import FolderList from "../folderList/FolderList";
+
 const Main = ({ courses }) => {
   return (
-    <MainContainer colors={themes["dark"].colors}>
-      <CoursesList courses={courses} />
+    <MainContainer>
+      {/* <CoursesList courses={courses} /> */}
+
+      <FolderList arr={courses}/>
     </MainContainer>
   );
 };

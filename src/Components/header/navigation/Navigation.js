@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import themes from "../../../themes";
 import {
   NavigationContainer,
-  StyledItem,
-  StyledLink,
+
 } from "./NavigationStyled";
 
 const Navigation = ({ headerLinks, lang = "en" }) => {

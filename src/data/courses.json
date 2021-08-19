@@ -7,7 +7,17 @@
       {
         "name": "Основы HTML. Часть 1",
         "webinar": "https://www.youtube.com/embed/k6IxRD5BEXY",
-        "repository": "https://github.com/BootCampGoIT/BootCamp_9_React"
+        "repository": "https://github.com/BootCampGoIT/BootCamp_9_React",
+        "modules": [
+          {
+            "name": "Section1",
+            "modules": [{ "name": "Section1" }, { "name": "Section1" }]
+          },
+          {
+            "name": "Section2",
+            "modules": [{ "name": "Section1" }, { "name": "Section1" }]
+          }
+        ]
       },
       {
         "name": "Основы HTML. Часть 2",
