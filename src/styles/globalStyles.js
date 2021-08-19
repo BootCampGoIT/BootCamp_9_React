@@ -10,4 +10,7 @@ button {
 h2 {
     color: ${({ theme }) => theme.colors.main}
 }
+body{
+    background-color: ${({theme})=> theme.colors.primary};
+}
 `;

@@ -3,19 +3,29 @@ import styled from "styled-components";
 export const FolderListContainer = styled.ul`
   display: flex;
   flex-direction: column;
-  border-left: 2px solid gray;
+  position: relative;
+
   .folderItem {
     position: relative;
     margin-left: 10px;
+  }
+  .folderItem:not(:last-child):before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: -15px;
+    width: 1px;
+    height: calc(100% + 12px);
+    border-left: 1px solid gray;
   }
 
   .folderContainer::before {
     content: "";
     position: absolute;
     top: 12px;
-    left: -12px;
+    left: -15px;
     width: 10px;
-    height: 2px;
+    height: 1px;
     background-color: gray;
   }
 

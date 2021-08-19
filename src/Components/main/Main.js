@@ -6,9 +6,9 @@ import FolderList from "../folderList/FolderList";
 const Main = ({ courses }) => {
   return (
     <MainContainer>
-      {/* <CoursesList courses={courses} /> */}
-
       <FolderList arr={courses}/>
+      <CoursesList courses={courses} />
+
     </MainContainer>
   );
 };
