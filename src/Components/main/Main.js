@@ -1,20 +1,12 @@
-import CoursesList from "./coursesList/CoursesList";
-import PropTypes from "prop-types";
 import { MainContainer } from "./MainStyled";
-import FolderList from "../folderList/FolderList";
+import Courses from "../courses/Courses";
 
-const Main = ({ courses }) => {
+const Main = () => {
   return (
     <MainContainer>
-      <FolderList arr={courses}/>
-      <CoursesList courses={courses} />
-
+      <Courses />
     </MainContainer>
   );
 };
 
 export default Main;
-
-CoursesList.propTypes = {
-  courses: PropTypes.array,
-};

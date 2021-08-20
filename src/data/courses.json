@@ -11,11 +11,11 @@
         "modules": [
           {
             "name": "Section1",
-            "modules": [{ "name": "Section1" }, { "name": "Section1" }]
+            "modules": [{ "name": "SubSection1" }, { "name": "SubSection2" }]
           },
           {
             "name": "Section2",
-            "modules": [{ "name": "Section1" }, { "name": "Section1" }]
+            "modules": [{ "name": "SubSection1" }, { "name": "SubSection2" }]
           }
         ]
       },

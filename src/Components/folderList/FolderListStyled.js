@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
+// const folderSize = {
+//   width: 24,
+//   height: 24,
+// };
+
 export const FolderListContainer = styled.ul`
   display: flex;
   flex-direction: column;
-  position: relative;
+
 
   .folderItem {
     position: relative;

@@ -4,8 +4,8 @@ import { FolderListContainer } from "./FolderListStyled";
 const FolderList = ({ arr }) => {
   return (
     <FolderListContainer>
-      {arr.map((item) => (
-        <li className='folderItem'>
+      {arr.map((item, idx) => (
+        <li className='folderItem' key={idx}>
           <div className='folderContainer'>
             <div className='folderIconContainer'>
               <svg className='folderIcon'>
@@ -31,3 +31,38 @@ const FolderList = ({ arr }) => {
 };
 
 export default FolderList;
+
+// const coursesArr = [
+//   {
+//     id: {
+//       parent: 0,
+//       current: 1,
+//     },
+//     name: "Html",
+//   },
+//   {
+//     parentId: 0,
+//     currentId: 2,
+//     name: "Html",
+//   },
+//   {
+//     parentId: 1,
+//     currentId: 3,
+//     name: "Lesson1",
+//   },
+//   {
+//     parentId: 1,
+//     currentId: 4,
+//     name: "Lesson2",
+//   },
+//   {
+//     parentId: 2,
+//     currentId: 5,
+//     name: "Lesson1",
+//   },
+//   {
+//     parentId: 2,
+//     currentId: 5,
+//     name: "Lesson1",
+//   },
+// ];

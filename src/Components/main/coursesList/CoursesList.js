@@ -1,5 +1,5 @@
 import Section from "../../section/Section";
-import PropTypes from "prop-types";
+
 import ModuleList from "./moduleList/ModuleList";
 
 const CoursesList = ({ courses }) => {
@@ -8,7 +8,6 @@ const CoursesList = ({ courses }) => {
       {courses.map((course) => (
         <li key={course.key}>
           <Section title={course.name} newCourse={course.newCourse}>
-            <h3>Modules:</h3>
             <ModuleList modules={course.modules} />
           </Section>
         </li>
@@ -18,10 +17,3 @@ const CoursesList = ({ courses }) => {
 };
 
 export default CoursesList;
-
-CoursesList.propTypes = {
-  courses: PropTypes.arrayOf({
-    name: PropTypes.string,
-    modules: PropTypes.array,
-  }),
-};

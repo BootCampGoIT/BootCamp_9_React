@@ -1,13 +1,14 @@
-import PropTypes from "prop-types";
 import sprite from "../../../../icons/courses/spite.svg";
+import { ModuleListContainer } from "./ModuleListStyled";
 
 const ModuleList = ({ modules }) => {
   return (
-    <ul>
+    <ModuleListContainer>
       {modules.map((moduleItem, idx) => (
-        <li key={idx}>
-          <h4>{moduleItem.name}</h4>
+        <li className='moduleListItem' key={idx}>
+          <h4 className='moduleListTitle'>{moduleItem.name}</h4>
           <iframe
+            className='moduleListFrame'
             width={560 / 3}
             height={315 / 3}
             src={moduleItem.webinar}
@@ -15,26 +16,18 @@ const ModuleList = ({ modules }) => {
             frameBorder='0'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen></iframe>
-          <div>
-            <svg>
+          <div className='moduleListLink'>
+            <svg className='moduleListLinkIcon'>
               <use href={sprite + "#icon-link"} />
             </svg>
-            <a href={moduleItem.repository}>Repository link</a>
+            <a href={moduleItem.repository} className='moduleListLinkText'>
+              Git-repository
+            </a>
           </div>
         </li>
       ))}
-    </ul>
+    </ModuleListContainer>
   );
 };
 
 export default ModuleList;
-
-ModuleList.propTypes = {
-  modules: PropTypes.arrayOf(
-    PropTypes.exact({
-      name: PropTypes.string,
-      webinar: PropTypes.string,
-      repository: PropTypes.string,
-    })
-  ),
-};
