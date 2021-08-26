@@ -11,6 +11,17 @@ class App extends Component {
     theme: themes.dark,
   };
 
+  componentDidMount() {
+    const currentTheme = JSON.parse(localStorage.getItem("theme"));
+    if (currentTheme === "dark") {
+      this.setState({ theme: themes.dark });
+    } else this.setState({ theme: themes.light });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("theme", JSON.stringify(this.state.theme.title));
+  }
+  
   toggleTheme = () => {
     this.setState((prev) => ({
       theme: prev.theme.title === "dark" ? themes.light : themes.dark,

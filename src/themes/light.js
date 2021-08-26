@@ -15,7 +15,8 @@ const light = {
     buttonText: "#ffffff",
     attention: "#dc143c",
     edit: "#1bdc14",
-    folder: "#ece910"
+    folder: "#ece910",
+    modal: "#ffffff",
   },
 };
 

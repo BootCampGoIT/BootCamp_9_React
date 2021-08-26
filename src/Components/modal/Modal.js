@@ -1,19 +1,32 @@
+import React, { Component } from "react";
 import { Overlay } from "./ModalStyled";
 
-const Modal = ({ children, closeModal }) => {
-  const body = document.querySelector("body");
-  body.style.overflow = "hidden";
+class Modal extends Component {
+  componentDidMount() {
+    window.addEventListener("keydown", this.handleEscape);
+    // const body = document.querySelector("body");
+    // body.style.overflow = "hidden";
+  }
 
-  const onOverlayClick = ({ target, currentTarget }) => {
-    target === currentTarget && closeModal();
-    body.style.overflow = "auto";
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.handleEscape);
+    // const body = document.querySelector("body");
+    // body.style.overflow = "auto";
+  }
+
+  handleEscape = (e) => e.code === "Escape" && this.props.closeModal();
+
+  onOverlayClick = ({ target, currentTarget }) => {
+    target === currentTarget && this.props.closeModal();
   };
 
-  return (
-    <Overlay onClick={onOverlayClick}>
-      <div className='modal'>{children}</div>
-    </Overlay>
-  );
-};
+  render() {
+    return (
+      <Overlay onClick={this.onOverlayClick}>
+        <div className='modal'>{this.props.children}</div>
+      </Overlay>
+    );
+  }
+}
 
 export default Modal;

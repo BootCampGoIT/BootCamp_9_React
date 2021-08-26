@@ -16,6 +16,7 @@ const dark = {
     attention: "#dc143c",
     edit: "#14dc6783",
     folder: "#ece910",
+    modal: "#ffffff",
   },
 };
 

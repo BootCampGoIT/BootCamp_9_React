@@ -11,7 +11,7 @@ export const HeaderContainer = styled.header`
 
   .headerLogo {
     text-transform: uppercase;
-    color: ${({ theme }) => theme.colors.attention};
+    color: ${({ theme }) => theme.colors.main};
     font-size: 24px;
     font-weight: 700;
   }
