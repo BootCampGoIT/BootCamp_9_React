@@ -1,5 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { signIn, signUp } from "../../services/authAPI";
+import LoaderComponent from "../loader/Loader";
+
+const errorMessages = {
+  MISSING_PASSWORD: "Осутствует пароль в поле ввода!",
+  EMAIL_EXISTS: "Почта занята",
+  Привет: "Привет",
+};
 
 class AuthForm extends Component {
   state = {
@@ -7,22 +15,30 @@ class AuthForm extends Component {
     password: "",
     confirm: "",
     incorrect: false,
+    error: "",
+    isLoading: false,
+    //! displayName: ""
   };
 
   onHandleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
     if (this.state.incorrect) this.setState({ incorrect: false });
+    if (this.state.error) this.setState({ error: "" });
   };
 
-  onHandleSubmit = (e) => {
+  onHandleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password, confirm, incorrect } = this.state;
+    const { email, password, incorrect } = this.state;
     if (!incorrect) {
-      axios.post(
-        process.env.REACT_APP_SIGNUP_URL,
-        { email, password, returnSecureToken: true }
-      );
+      this.setState((prev) => ({ isLoading: !prev.isLoading }));
+      try {
+        await signUp(email, password);
+      } catch (error) {
+        this.setState({ error: error.message });
+      } finally {
+        this.setState((prev) => ({ isLoading: !prev.isLoading }));
+      }
     } else {
       this.setState({ incorrect: true });
     }
@@ -37,6 +53,8 @@ class AuthForm extends Component {
     return (
       <div>
         {this.state.incorrect && <p>No match passwords</p>}
+        {this.state.error && <p>{errorMessages[this.state.error]}</p>}
+        {this.state.isLoading && <LoaderComponent />}
         <form onSubmit={this.onHandleSubmit}>
           <label>
             Email
@@ -54,7 +72,7 @@ class AuthForm extends Component {
               onChange={this.onHandleChange}
               name='password'
               value={password}
-            //   className={this.state.incorrect ? "correct" : "incorrect"}
+              //   className={this.state.incorrect ? "correct" : "incorrect"}
             />
           </label>
           <label>
@@ -64,8 +82,6 @@ class AuthForm extends Component {
               onChange={this.onHandleChange}
               name='confirm'
               value={confirm}
-            //   onBlur={this.validate}
-            //   className={this.state.incorrect ? "correct" : "incorrect"}
             />
           </label>
           <button type='submit'>Sign up</button>

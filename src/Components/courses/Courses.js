@@ -3,71 +3,42 @@ import React, { Component } from "react";
 import CoursesForm from "./coursesForm/CoursesForm";
 
 import CoursesList from "./coursesList/CoursesList";
-import axios from "axios";
+import { addCourse, deleteCourse, getCourses } from "../../services/coursesAPI";
 
 class Courses extends Component {
   state = {
     courses: [],
+    error: "",
   };
 
   async componentDidMount() {
     try {
-      const response = await axios.get(
-        process.env.REACT_APP_BASE_URL + `/courses.json`
-      );
-    
-      const courses = Object.keys(response.data).map((key) => ({
-        ...response.data[key],
-        id: key,
-      }));
+      const courses = await getCourses();
       this.setState({ courses });
     } catch (error) {
-      console.log(error);
+      this.setState({ error: "No matches" });
     }
-
-    // -------------------- localStorage -------------------------
-    const courses = JSON.parse(localStorage.getItem("courses"));
-    courses && this.setState({ courses: courses });
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return false
-  // }
-  
-  // getSnapshotBeforeUpdate(prevProps, prevState) {
-  //   return {positopn: 300}
-  // }
-
-  componentDidUpdate(prevProps, prevState, snapShot) {
-    // -------------------- localStorage -------------------------
-    localStorage.setItem("courses", JSON.stringify(this.state.courses));
-  }
-
-  addCourse = async (course) => {
+  addNewCourse = async (course) => {
     try {
-      const response = await axios.post(
-        `https://bc-9-platform-default-rtdb.firebaseio.com/courses.json`,
-        course
-      );
-
+      const id = await addCourse(course);
       this.setState((prev) => ({
-        courses: [...prev.courses, { ...course, id: response.data.name }],
+        courses: [...prev.courses, { ...course, id }],
       }));
     } catch (error) {
-      console.log(error);
+      this.setState({ error: error.message });
     }
   };
 
-  deleteCourse = async (id) => {
+  deleteCourseById = async (id) => {
     try {
-      await axios.delete(
-        `https://bc-9-platform-default-rtdb.firebaseio.com/courses/${id}.json`
-      );
+      deleteCourse(id);
       this.setState((prev) => ({
         courses: prev.courses.filter((course) => course.id !== id),
       }));
     } catch (error) {
-      console.log(error);
+      this.setState({ error: error.message });
     }
   };
 
@@ -75,11 +46,12 @@ class Courses extends Component {
     return (
       <>
         <h2>CoursesForm</h2>
-        <CoursesForm addCourse={this.addCourse} />
+        <CoursesForm addCourse={this.addNewCourse} />
+        <hr />
         <h2>CoursesList</h2>
         <CoursesList
           courses={this.state.courses}
-          deleteCourse={this.deleteCourse}
+          deleteCourse={this.deleteCourseById}
         />
       </>
     );
