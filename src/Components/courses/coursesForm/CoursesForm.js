@@ -39,32 +39,34 @@ class CoursesForm extends Component {
     const { name, description, avatar } = this.state;
     return (
       <CourseFormContainer onSubmit={this.onHandleSubmit}>
-        <label>
+        <div className='avatarContainer'>
+          <div className='avatarImageBlock'>
+            <img src={avatar} alt={name} className='avatarImage' />
+          </div>
+          <label className='coursesFormLabel'>
+            Avatar
+            <input type='file' name='avatar' onChange={this.onChangeAvatar} className="coursesFormInput" />
+          </label>
+        </div>
+        <label className='coursesFormLabel'>
           Name:
           <input
             type='text'
             value={name}
             onChange={this.onHandleChange}
             name='name'
+            className='coursesFormInput'
           />
         </label>
-        <label>
+        <label className='coursesFormLabel'>
           Description:
           <textarea
             name='description'
             value={description}
             onChange={this.onHandleChange}
+            className='coursesFormArea'
           />
         </label>
-        <div className='avatarContainer'>
-          <div className='avatarImageBlock'>
-            <img src={avatar} alt={name} className='avatarImage' />
-          </div>
-          <label>
-            Avatar
-            <input type='file' name='avatar' onChange={this.onChangeAvatar} />
-          </label>
-        </div>
         <button type='submit'>Add course</button>
       </CourseFormContainer>
     );

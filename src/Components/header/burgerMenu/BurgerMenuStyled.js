@@ -25,4 +25,7 @@ export const BurgerMenuContent = styled.div`
     color: currentColor;
     margin-right: 20px;
   }
+  .burgerNavigationWrapper {
+    
+  }
 `;

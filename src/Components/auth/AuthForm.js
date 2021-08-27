@@ -20,8 +20,7 @@ class AuthForm extends Component {
     const { email, password, confirm, incorrect } = this.state;
     if (!incorrect) {
       axios.post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=
-            AIzaSyBi2jnww03660AOGi7s1Nhzfsz-SLgJpXg`,
+        process.env.REACT_APP_SIGNUP_URL,
         { email, password, returnSecureToken: true }
       );
     } else {

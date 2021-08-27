@@ -13,9 +13,9 @@ class Courses extends Component {
   async componentDidMount() {
     try {
       const response = await axios.get(
-        `https://bc-9-platform-default-rtdb.firebaseio.com/courses.json`
+        process.env.REACT_APP_BASE_URL + `/courses.json`
       );
-      console.log("response :>> ", response);
+    
       const courses = Object.keys(response.data).map((key) => ({
         ...response.data[key],
         id: key,

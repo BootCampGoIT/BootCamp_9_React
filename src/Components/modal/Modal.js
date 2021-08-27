@@ -4,14 +4,14 @@ import { Overlay } from "./ModalStyled";
 class Modal extends Component {
   componentDidMount() {
     window.addEventListener("keydown", this.handleEscape);
-    // const body = document.querySelector("body");
-    // body.style.overflow = "hidden";
+    const body = document.querySelector("body");
+    body.style.overflow = "hidden";
   }
 
   componentWillUnmount() {
     window.removeEventListener("keydown", this.handleEscape);
-    // const body = document.querySelector("body");
-    // body.style.overflow = "auto";
+    const body = document.querySelector("body");
+    body.style.overflow = "auto";
   }
 
   handleEscape = (e) => e.code === "Escape" && this.props.closeModal();
