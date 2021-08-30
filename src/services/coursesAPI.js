@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export const getCourses = async () => {
   try {
     const response = await axios.get(
