@@ -12,7 +12,20 @@ export const BurgerMenuContainer = styled.div`
 `;
 
 export const BurgerMenuContent = styled.div`
-  .switcherContainer {
+position: relative;
+.burgerBackdrop{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: ${({ theme }) => theme.colors.primary};
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  .burgerOptionsContainer {
     display: flex;
     align-items: center;
     color: ${({ theme }) => theme.colors.main};

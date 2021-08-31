@@ -1,37 +1,43 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 
 import CoursesForm from "./coursesForm/CoursesForm";
 
 import CoursesList from "./coursesList/CoursesList";
 import { addCourse, deleteCourse, getCourses } from "../../services/coursesAPI";
 
-class Courses extends Component {
-  state = {
-    courses: [],
-    error: "",
-  };
+const initialState = {
+  courses: [],
+  error: "",
+};
 
-  async componentDidMount() {
-    try {
-      const courses = await getCourses();
-      this.setState({ courses });
-    } catch (error) {
-      this.setState({ error: "No matches" });
-    }
-  }
+const Courses = () => {
+  const [state, setState] = useState(() => ({ ...initialState }));
 
-  addNewCourse = async (course) => {
+  useEffect(() => {
+    const getAllCourses = async () => {
+      try {
+        const courses = await getCourses();
+        setState((prev) => ({ ...prev, courses }));
+      } catch (error) {
+        setState((prev) => ({ ...prev, error: "No matches" }));
+      }
+    };
+    getAllCourses();
+  }, []);
+
+  const addNewCourse = async (course) => {
     try {
       const id = await addCourse(course);
-      this.setState((prev) => ({
+      setState((prev) => ({
+        ...prev,
         courses: [...prev.courses, { ...course, id }],
       }));
     } catch (error) {
-      this.setState({ error: error.message });
+      setState((prev) => ({ ...prev, error: error.message }));
     }
   };
 
-  deleteCourseById = async (id) => {
+  const deleteCourseById = async (id) => {
     try {
       deleteCourse(id);
       this.setState((prev) => ({
@@ -41,21 +47,18 @@ class Courses extends Component {
       this.setState({ error: error.message });
     }
   };
-
-  render() {
-    return (
-      <>
-        <h2>CoursesForm</h2>
-        <CoursesForm addCourse={this.addNewCourse} />
-        <hr />
-        <h2>CoursesList</h2>
-        <CoursesList
-          courses={this.state.courses}
-          deleteCourse={this.deleteCourseById}
-        />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <h2>CoursesForm</h2>
+      <CoursesForm addCourse={addNewCourse} />
+      <hr />
+      <h2>CoursesList</h2>
+      <CoursesList
+        courses={state.courses || []}
+        deleteCourse={deleteCourseById}
+      />
+    </>
+  );
+};
 
 export default Courses;

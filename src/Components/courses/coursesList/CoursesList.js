@@ -1,9 +1,12 @@
+import selectorHOC from "../../hoc/SelectorHOC";
 import CoursesListItem from "./coursesListItem/CoursesListItem";
 import { CoursesListStyled } from "./CoursesListStyled";
 
-const CoursesList = ({ courses, deleteCourse }) => {
+const CoursesList = ({ courses, deleteCourse, data }) => {
   return (
     <CoursesListStyled>
+      <h2 style={{ color: data.colors.edit }}>Hello context</h2>
+
       {courses.map((course) => (
         <CoursesListItem
           {...course}
@@ -15,4 +18,4 @@ const CoursesList = ({ courses, deleteCourse }) => {
   );
 };
 
-export default CoursesList;
+export default selectorHOC("theme")(CoursesList);

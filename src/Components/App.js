@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import { ThemeProvider } from "styled-components";
 import data from "../data";
 import GlobalStyles from "../styles/globalStyles";
@@ -6,9 +6,14 @@ import themes from "../themes";
 import Header from "./header/Header";
 import Main from "./main/Main";
 
+export const { Provider: CustomThemeProvider, Consumer: CustomThemeConsumer } =
+  createContext();
+
 class App extends Component {
   state = {
     theme: themes.dark,
+    message: "hello Alex",
+    contacts: [{ name: "Alex" }],
   };
 
   componentDidMount() {
@@ -21,7 +26,7 @@ class App extends Component {
   componentDidUpdate() {
     localStorage.setItem("theme", JSON.stringify(this.state.theme.title));
   }
-  
+
   toggleTheme = () => {
     this.setState((prev) => ({
       theme: prev.theme.title === "dark" ? themes.light : themes.dark,
@@ -31,18 +36,57 @@ class App extends Component {
   render() {
     return (
       <>
-        <ThemeProvider theme={this.state.theme}>
-          <GlobalStyles />
-          <Header
-            headerLinks={data.header}
-            toggleTheme={this.toggleTheme}
-            theme={this.state.theme}
-          />
-          <Main />
-        </ThemeProvider>
+        <CustomThemeProvider value={this.state}>
+          <ThemeProvider theme={this.state.theme}>
+            <GlobalStyles />
+            <Header
+              headerLinks={data.header}
+              toggleTheme={this.toggleTheme}
+              theme={this.state.theme}
+            />
+            <Main />
+          </ThemeProvider>
+        </CustomThemeProvider>
       </>
     );
   }
 }
 
 export default App;
+
+// const App = () => {
+//   const [theme, setTheme] = useState(themes.dark);
+
+//   useEffect(() => {
+//     const currentTheme = JSON.parse(localStorage.getItem("theme"));
+//     if (currentTheme === "dark") {
+//       setTheme(themes.dark);
+//     } else setTheme(themes.light);
+//   }, []);
+
+//   useEffect(() => {
+//     localStorage.setItem("theme", JSON.stringify(theme.title));
+//   }, [theme]);
+
+//   const toggleTheme = () => {
+//     setTheme((prev) =>
+//       prev.theme.title === "dark" ? themes.light : themes.dark
+//     );
+//   };
+
+//   return (
+//     <>
+//       <ThemeProvider theme={theme}>
+//         <GlobalStyles />
+//         <Header
+//           headerLinks={data.header}
+//           toggleTheme={toggleTheme}
+//           theme={theme}
+//         />
+//         <Main />
+//       </ThemeProvider>
+//     </>
+//   );
+// };
+
+// export default App;
