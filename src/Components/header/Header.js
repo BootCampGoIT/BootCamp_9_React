@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { HeaderContainer } from "./HeaderStyled";
 import Navigation from "./navigation/Navigation";
-
 import BurgerMenu from "./burgerMenu/BurgerMenu";
 
 class Header extends Component {
@@ -29,14 +28,10 @@ class Header extends Component {
         </a>
 
         {width < breakPoint ? (
-          <BurgerMenu
-            toggleTheme={this.props.toggleTheme}
-            theme={this.props.theme}
-            headerLinks={this.props.headerLinks}
-          />
+          <BurgerMenu />
         ) : (
           <>
-            <Navigation headerLinks={this.props.headerLinks} />
+            <Navigation />
           </>
         )}
       </HeaderContainer>

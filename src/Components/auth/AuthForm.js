@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { signIn, signUp } from "../../services/authAPI";
+import { signUp } from "../../services/authAPI";
 import LoaderComponent from "../loader/Loader";
 
 const errorMessages = {
@@ -72,7 +71,6 @@ class AuthForm extends Component {
               onChange={this.onHandleChange}
               name='password'
               value={password}
-              //   className={this.state.incorrect ? "correct" : "incorrect"}
             />
           </label>
           <label>

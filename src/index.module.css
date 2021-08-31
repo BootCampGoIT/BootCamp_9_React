@@ -56,12 +56,3 @@ ul {
   list-style: none;
 }
 
-:global(.styledButton) {
-  background-color: cornflowerblue;
-  border: none;
-  padding: 0 10px;
-}
-
-:global(.baseColor) {
-  color: green;
-}

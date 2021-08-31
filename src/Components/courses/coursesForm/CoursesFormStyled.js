@@ -23,6 +23,10 @@ export const CourseFormContainer = styled.form`
   .coursesFormArea {
     width: 100%;
     height: 100px;
+    border: 1px solid ${({ theme }) => theme.colors.main};
+    border-radius: 16px;
+    outline: none;
+    padding: 10px;
   }
 
   .avatarImageBlock {

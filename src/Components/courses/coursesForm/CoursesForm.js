@@ -1,5 +1,6 @@
-import React, { Component, useState, useContext } from "react";
-import { CustomThemeConsumer, ThemeConsumer } from "../../App";
+import React, { useState, useContext } from "react";
+import { CustomLanguage } from "../../App";
+
 import { CourseFormContainer } from "./CoursesFormStyled";
 
 const toDataURL = (element) => {
@@ -19,7 +20,7 @@ const initialState = {
 
 const CoursesForm = ({ addCourse }) => {
   const [user, setUser] = useState({ ...initialState });
-  const state = useContext(CustomThemeConsumer);
+  const { language } = useContext(CustomLanguage);
 
   const onHandleChange = (e) => {
     const { name, value } = e.target;
@@ -39,14 +40,12 @@ const CoursesForm = ({ addCourse }) => {
 
   return (
     <CourseFormContainer onSubmit={onHandleSubmit}>
-      <h2 style={{ color: state.theme.colors.edit }}>{state.message}</h2>
-
       <div className='avatarContainer'>
         <div className='avatarImageBlock'>
           <img src={user.avatar} alt={user.name} className='avatarImage' />
         </div>
         <label className='coursesFormLabel'>
-          Avatar
+          {language.courses.courseForm["avatar"]}
           <input
             type='file'
             name='avatar'
@@ -56,7 +55,7 @@ const CoursesForm = ({ addCourse }) => {
         </label>
       </div>
       <label className='coursesFormLabel'>
-        Name:
+        {language.courses.courseForm["name"]}
         <input
           type='text'
           value={user.name}
@@ -66,7 +65,7 @@ const CoursesForm = ({ addCourse }) => {
         />
       </label>
       <label className='coursesFormLabel'>
-        Description:
+        {language.courses.courseForm["description"]}
         <textarea
           name='description'
           value={user.description}
@@ -74,7 +73,7 @@ const CoursesForm = ({ addCourse }) => {
           className='coursesFormArea'
         />
       </label>
-      <button type='submit'>Add course</button>
+      <button type='submit'> {language.courses.courseForm["addCourse"]}</button>
     </CourseFormContainer>
   );
 };

@@ -187,18 +187,4 @@ class ProfileForm extends Component {
 
 export default ProfileForm;
 
-// const arr1 = [1, 2, 3, 4, 5];
-// const arr2 = [...arr1];
-// arr2.push(6);
-// console.log(arr1);
 
-// const arr1 = [
-//   { name: "Alex", id: 1 },
-//   { name: "Nikita", id: 2 },
-// ];
-
-// const arr2 = JSON.parse(JSON.stringify([...arr1]));
-// arr2.push({ name: "Boris", id: 3 });
-// arr2[0].name = "Andrii";
-// console.log(arr1);
-// console.log(arr2);

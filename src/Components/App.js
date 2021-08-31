@@ -1,92 +1,32 @@
-import React, { Component, createContext } from "react";
+import React, { createContext } from "react";
 import { ThemeProvider } from "styled-components";
 import data from "../data";
 import GlobalStyles from "../styles/globalStyles";
-import themes from "../themes";
+
 import Header from "./header/Header";
+import usePersistedLanguage from "./hooks/usePersistedLanguage";
+import { usePersistedTheme } from "./hooks/usePersistedTheme";
 import Main from "./main/Main";
 
-export const { Provider: CustomThemeProvider, Consumer: CustomThemeConsumer } =
-  createContext();
+export const CustomTheme = createContext();
+export const CustomLanguage = createContext();
 
-class App extends Component {
-  state = {
-    theme: themes.dark,
-    message: "hello Alex",
-    contacts: [{ name: "Alex" }],
-  };
-
-  componentDidMount() {
-    const currentTheme = JSON.parse(localStorage.getItem("theme"));
-    if (currentTheme === "dark") {
-      this.setState({ theme: themes.dark });
-    } else this.setState({ theme: themes.light });
-  }
-
-  componentDidUpdate() {
-    localStorage.setItem("theme", JSON.stringify(this.state.theme.title));
-  }
-
-  toggleTheme = () => {
-    this.setState((prev) => ({
-      theme: prev.theme.title === "dark" ? themes.light : themes.dark,
-    }));
-  };
-
-  render() {
-    return (
-      <>
-        <CustomThemeProvider value={this.state}>
-          <ThemeProvider theme={this.state.theme}>
+const App = () => {
+  const [theme, changeTheme] = usePersistedTheme();
+  const [language, changeLanguage] = usePersistedLanguage();
+  return (
+    <>
+      <CustomLanguage.Provider value={{ language, changeLanguage }}>
+        <CustomTheme.Provider value={{ theme, changeTheme }}>
+          <ThemeProvider theme={theme}>
             <GlobalStyles />
-            <Header
-              headerLinks={data.header}
-              toggleTheme={this.toggleTheme}
-              theme={this.state.theme}
-            />
+            <Header />
             <Main />
           </ThemeProvider>
-        </CustomThemeProvider>
-      </>
-    );
-  }
-}
+        </CustomTheme.Provider>
+      </CustomLanguage.Provider>
+    </>
+  );
+};
 
 export default App;
-
-// const App = () => {
-//   const [theme, setTheme] = useState(themes.dark);
-
-//   useEffect(() => {
-//     const currentTheme = JSON.parse(localStorage.getItem("theme"));
-//     if (currentTheme === "dark") {
-//       setTheme(themes.dark);
-//     } else setTheme(themes.light);
-//   }, []);
-
-//   useEffect(() => {
-//     localStorage.setItem("theme", JSON.stringify(theme.title));
-//   }, [theme]);
-
-//   const toggleTheme = () => {
-//     setTheme((prev) =>
-//       prev.theme.title === "dark" ? themes.light : themes.dark
-//     );
-//   };
-
-//   return (
-//     <>
-//       <ThemeProvider theme={theme}>
-//         <GlobalStyles />
-//         <Header
-//           headerLinks={data.header}
-//           toggleTheme={toggleTheme}
-//           theme={theme}
-//         />
-//         <Main />
-//       </ThemeProvider>
-//     </>
-//   );
-// };
-
-// export default App;

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import sprite from "../../icons/base/folder.svg";
 
-console.dir(Component);
-
 class Folder extends Component {
   state = {
     isOpen: false,
@@ -26,7 +24,6 @@ class Folder extends Component {
         <button type='button' onClick={this.onHandleClick}>
           {this.state.isContentOpen ? "Close" : "Open"}
         </button>
-     
 
         {this.state.isContentOpen && (
           <div className='folderWrapper' onClick={this.toggleFolder}>

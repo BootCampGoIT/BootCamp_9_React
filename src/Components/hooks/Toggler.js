@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState } from "react";
 
 const initialState = {
   isOpen: false,
@@ -7,20 +7,6 @@ const initialState = {
 
 const Toggler = () => {
   const [state, setState] = useState(initialState);
-  //   const [isOpen, setIsOpen] = useState(false);
-  //   const [input, setInput] = useState("");
-
-//   useEffect(() => {
-//     console.log("effect");
-//   }, []);
-
-//   useEffect(() => {
-//     console.log("effect");
-//   }, []);
-
-//   useEffect(() => {
-//     state.isOpen && console.log(state.isOpen);
-//   }, [state.isOpen]);
 
   const toggle = () => {
     setState((prev) => ({ ...prev, isOpen: !prev.isOpen }));

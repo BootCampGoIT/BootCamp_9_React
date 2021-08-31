@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import CoursesForm from "./coursesForm/CoursesForm";
 
@@ -40,11 +40,12 @@ const Courses = () => {
   const deleteCourseById = async (id) => {
     try {
       deleteCourse(id);
-      this.setState((prev) => ({
+      setState((prev) => ({
+        ...prev,
         courses: prev.courses.filter((course) => course.id !== id),
       }));
     } catch (error) {
-      this.setState({ error: error.message });
+      setState((prev) => ({ ...prev, error: error.message }));
     }
   };
   return (
@@ -62,3 +63,5 @@ const Courses = () => {
 };
 
 export default Courses;
+
+

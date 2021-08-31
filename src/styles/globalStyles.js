@@ -10,7 +10,8 @@ body {
 button {
     color: ${(props) => props.theme.colors.buttonText};
     background-color: ${(props) => props.theme.colors.main};
-    height: 34px;
+    height: 24px;
+    font-weight: 700;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.1em;

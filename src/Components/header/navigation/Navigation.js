@@ -1,25 +1,27 @@
-import React, { useState } from "react";
-import themes from "../../../themes";
-import {
-  NavigationContainer,
+import React, { useContext } from "react";
+import { CustomLanguage } from "../../App";
 
-} from "./NavigationStyled";
+import { NavigationContainer } from "./NavigationStyled";
 
-const Navigation = ({ headerLinks, lang = "en" }) => {
-  // const [lang, setLang] = useState("en");
+const headerLinks = [
+  "home",
+  "courses",
+  "groups",
+  "profile",
+  "signin",
+  "signup",
+];
+
+const Navigation = () => {
+  const { language } = useContext(CustomLanguage);
   return (
     <>
-      {/* <button
-        type='button'
-        onClick={() => setLang(lang === "ru" ? "en" : "ru")}>
-        change language
-      </button> */}
       <NavigationContainer>
         <ul className='navList'>
           {headerLinks.map((link) => (
-            <li key={link.path} className='navItem'>
-              <a href={link.path} className='navLink'>
-                {link.name[lang]}
+            <li key={link} className='navItem'>
+              <a href={link} className='navLink'>
+                {language.header.navigation[link]}
               </a>
             </li>
           ))}
