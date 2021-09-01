@@ -1,16 +1,8 @@
 import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { mainRoutes } from "../../../routes/mainRoutes";
 import { CustomLanguage } from "../../App";
-
 import { NavigationContainer } from "./NavigationStyled";
-
-const headerLinks = [
-  "home",
-  "courses",
-  "groups",
-  "profile",
-  "signin",
-  "signup",
-];
 
 const Navigation = () => {
   const { language } = useContext(CustomLanguage);
@@ -18,11 +10,15 @@ const Navigation = () => {
     <>
       <NavigationContainer>
         <ul className='navList'>
-          {headerLinks.map((link) => (
-            <li key={link} className='navItem'>
-              <a href={link} className='navLink'>
-                {language.header.navigation[link]}
-              </a>
+          {mainRoutes.map((link) => (
+            <li key={link.path} className='navItem'>
+              <NavLink
+                exact={link.exact}
+                to={link.path}
+                className='navLink'
+                activeClassName='activeNavLink'>
+                {language.header.navigation[link.name]}
+              </NavLink>
             </li>
           ))}
         </ul>

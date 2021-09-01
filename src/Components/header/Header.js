@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HeaderContainer } from "./HeaderStyled";
 import Navigation from "./navigation/Navigation";
 import BurgerMenu from "./burgerMenu/BurgerMenu";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   state = {
@@ -23,17 +24,11 @@ class Header extends Component {
     const { width, breakPoint } = this.state;
     return (
       <HeaderContainer>
-        <a href='/#' className='headerLogo'>
+        <Link to='/' className='headerLogo'>
           ITED
-        </a>
+        </Link>
 
-        {width < breakPoint ? (
-          <BurgerMenu />
-        ) : (
-          <>
-            <Navigation />
-          </>
-        )}
+        {width < breakPoint ? <BurgerMenu /> : <Navigation />}
       </HeaderContainer>
     );
   }

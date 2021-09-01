@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { signUp } from "../../services/authAPI";
 import LoaderComponent from "../loader/Loader";
+import { AuthFormContainer } from "./AuthFormStyled";
 
 const errorMessages = {
   MISSING_PASSWORD: "Осутствует пароль в поле ввода!",
@@ -50,7 +52,7 @@ class AuthForm extends Component {
   render() {
     const { email, password, confirm } = this.state;
     return (
-      <div>
+      <AuthFormContainer>
         {this.state.incorrect && <p>No match passwords</p>}
         {this.state.error && <p>{errorMessages[this.state.error]}</p>}
         {this.state.isLoading && <LoaderComponent />}
@@ -84,9 +86,9 @@ class AuthForm extends Component {
           </label>
           <button type='submit'>Sign up</button>
         </form>
-      </div>
+      </AuthFormContainer>
     );
   }
 }
 
-export default AuthForm;
+export default withRouter(AuthForm);

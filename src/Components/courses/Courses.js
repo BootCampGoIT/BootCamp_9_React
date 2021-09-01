@@ -50,10 +50,9 @@ const Courses = () => {
   };
   return (
     <>
-      <h2>CoursesForm</h2>
       <CoursesForm addCourse={addNewCourse} />
       <hr />
-      <h2>CoursesList</h2>
+
       <CoursesList
         courses={state.courses || []}
         deleteCourse={deleteCourseById}
@@ -63,5 +62,3 @@ const Courses = () => {
 };
 
 export default Courses;
-
-

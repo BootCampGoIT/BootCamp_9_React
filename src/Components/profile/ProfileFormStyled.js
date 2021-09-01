@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 export const ProfileFormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 350px;
+  margin: 10px 0;
+
   .profileAvatarContainer {
     width: 100px;
     height: 100px;

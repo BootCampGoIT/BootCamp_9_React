@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
 export const SectionContainer = styled.section`
-  /* border: 1px solid ${({ theme }) => theme.colors.label};
-  border-radius: 16px; */
-  padding: 10px;
+  .sectionTitle {
+    color: ${({ theme }) => theme.colors.main};
+    padding: 5px 0;
+    margin-bottom: 10px;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
+    text-transform: uppercase;
+  }
 `;

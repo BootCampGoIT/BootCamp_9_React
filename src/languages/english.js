@@ -7,6 +7,7 @@ export const english = {
       courses: "courses",
       groups: "groups",
       profile: "profile",
+      admin: "admin",
       signin: "signin",
       signup: "signup",
     },
