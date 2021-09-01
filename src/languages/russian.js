@@ -7,12 +7,20 @@ export const russian = {
       courses: "Курсы",
       groups: "Группы",
       profile: "Профиль",
-      admin: "администрирование",
+      admin: "Админ",
       signin: "Войти",
       signup: "Зарегистрироваться",
     },
     burgerMenu: {
       toggleTheme: "Темная тема",
+      changeLanguage: "Язык",
+    },
+  },
+  auth: {
+    authForm: {
+      email: "Почтовый ящик",
+      password: "Пароль",
+      confirmPassword: "Подтверждение пароля",
     },
   },
   courses: {

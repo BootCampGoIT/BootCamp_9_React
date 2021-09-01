@@ -12,26 +12,39 @@ export const BurgerMenuContainer = styled.div`
 `;
 
 export const BurgerMenuContent = styled.div`
-position: relative;
-.burgerBackdrop{
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: ${({ theme }) => theme.colors.primary};
-  padding: 20px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  position: relative;
+  .burgerBackdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: ${({ theme }) => theme.colors.primary};
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .burgerOptionsContainer {
     display: flex;
+    flex-direction: column;
+    width: 100%;
     align-items: center;
-    color: ${({ theme }) => theme.colors.main};
+    color: ${({ theme }) => theme.colors.text};
     border-top: 2px solid ${({ theme }) => theme.colors.main};
+    border-bottom: 2px solid ${({ theme }) => theme.colors.main};
     padding: 20px 0;
     margin-top: 20px;
+  }
+  .burgerOption {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  .burgerLanguageSelector {
+    width: 150px;
   }
 
   .switcherTitle {
@@ -39,6 +52,5 @@ position: relative;
     margin-right: 20px;
   }
   .burgerNavigationWrapper {
-    
   }
 `;

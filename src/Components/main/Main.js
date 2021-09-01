@@ -23,9 +23,9 @@ const Main = () => {
                   GoForward
                 </button>
                 {console.log("props :>> ", props)} */}
-                <Section title={name}>
-                  <MyComponent />
-                </Section>
+                {/* <Section title={name}> */}
+                <MyComponent />
+                {/* </Section> */}
               </>
             )}
           />

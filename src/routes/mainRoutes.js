@@ -1,5 +1,5 @@
-import AdminPage from "../pages/AdminPage";
-import AuthPage from "../pages/AuthPage";
+import AdminPage from "../pages/AdminPage/AdminPage";
+import AuthPage from "../pages/AuthPage/AuthPage";
 import CoursesPage from "../pages/CoursesPage";
 import GroupsPage from "../pages/GroupsPage";
 import HomePage from "../pages/HomePage";
@@ -18,12 +18,12 @@ export const mainRoutes = [
     exact: true,
     component: CoursesPage,
   },
-  {
-    name: "profile",
-    path: "/profile",
-    exact: true,
-    component: ProfilePage,
-  },
+  // {
+  //   name: "profile",
+  //   path: "/profile",
+  //   exact: true,
+  //   component: ProfilePage,
+  // },
   {
     name: "groups",
     path: "/groups",

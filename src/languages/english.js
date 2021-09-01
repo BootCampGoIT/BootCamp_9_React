@@ -12,16 +12,23 @@ export const english = {
       signup: "signup",
     },
     burgerMenu: {
-        toggleTheme: "Dark theme"
-    }
+      toggleTheme: "Dark theme",
+      changeLanguage: "Language",
+    },
+  },
+  auth: {
+    authForm: {
+      email: "Email",
+      password: "Password",
+      confirmPassword: "Confirm password",
+    },
   },
   courses: {
-      courseForm: {
-        avatar: "Avatar",
-        name: "Name",
-        description: "Description",
-        addCourse: "Add course"
-      }
-
-  }
+    courseForm: {
+      avatar: "Avatar",
+      name: "Name",
+      description: "Description",
+      addCourse: "Add course",
+    },
+  },
 };

@@ -7,12 +7,20 @@ export const ukrainian = {
       courses: "Курси",
       groups: "Групи",
       profile: "Профіль",
-      admin: "адміністрування",
+      admin: "Адмін",
       signin: "Увійти",
       signup: "Зареєструватись",
     },
     burgerMenu: {
       toggleTheme: "Темна тема",
+      changeLanguage: "Мова",
+    },
+  },
+  auth: {
+    authForm: {
+      email: "Поштова скринька",
+      password: "Пароль",
+      confirmPassword: "Підтвердження пароля",
     },
   },
   courses: {

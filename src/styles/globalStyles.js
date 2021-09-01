@@ -28,7 +28,7 @@ button:hover {
 
 label {
     color: ${(props) => props.theme.colors.label};
-    font-size: 12px;
+    font-size: 16px;
     line-height: 20px;
 }
 ul {
@@ -42,11 +42,13 @@ input, select {
     color: ${(props) => props.theme.colors.input};
     border: 1px solid ${(props) => props.theme.colors.main};
     height: 25px;
-    border-radius: 50pc;
+    border-radius: 16px;
     outline: none;
-    padding: 0 10px;
-    height: 25px;
+    padding: 0 12px;
+    height: 32px;
     width: 100%;
+    font-size: 16px;
+    margin: 8px 0
 }
 
 input::-webkit-input-placeholder {
@@ -70,5 +72,4 @@ input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s eas
 input:focus::-moz-placeholder{opacity: 0; transition: opacity 0.3s ease;}
 input:focus:-moz-placeholder{opacity: 0; transition: opacity 0.3s ease;}
 input:focus:-ms-input-placeholder{opacity: 0; transition: opacity 0.3s ease;}
-
 `;

@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
-export const NavigationContainer = styled.nav`
+export const AdminPageContainer = styled.div`
   .navList {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
   }
 
   .navItem {
     margin-bottom: 10px;
+  }
+  .navItem:not(:last-child) {
+    margin-right: 20px;
   }
 
   .navLink {
@@ -24,20 +27,6 @@ export const NavigationContainer = styled.nav`
   }
 
   @media (min-width: 768px) {
-    .navList {
-      flex-direction: row;
-    }
-
-    .navItem {
-      margin-bottom: 0px;
-    }
-    .navItem:not(:last-child) {
-      margin-right: 20px;
-    }
-
-    .navLink {
-      font-size: 16px;
-    }
   }
 
   @media (min-width: 1024px) {

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { signUp } from "../../services/authAPI";
+import { signIn, signUp } from "../../services/authAPI";
 import LoaderComponent from "../loader/Loader";
 import { AuthFormContainer } from "./AuthFormStyled";
+import sprite from "../../icons/auth/sprite.svg";
 
 const errorMessages = {
   MISSING_PASSWORD: "Осутствует пароль в поле ввода!",
@@ -18,7 +19,6 @@ class AuthForm extends Component {
     incorrect: false,
     error: "",
     isLoading: false,
-    //! displayName: ""
   };
 
   onHandleChange = (e) => {
@@ -34,7 +34,7 @@ class AuthForm extends Component {
     if (!incorrect) {
       this.setState((prev) => ({ isLoading: !prev.isLoading }));
       try {
-        await signUp(email, password);
+        await signIn(email, password);
       } catch (error) {
         this.setState({ error: error.message });
       } finally {
@@ -56,35 +56,58 @@ class AuthForm extends Component {
         {this.state.incorrect && <p>No match passwords</p>}
         {this.state.error && <p>{errorMessages[this.state.error]}</p>}
         {this.state.isLoading && <LoaderComponent />}
-        <form onSubmit={this.onHandleSubmit}>
-          <label>
+        <form onSubmit={this.onHandleSubmit} className='authForm'>
+          <label className='authFormLabel'>
             Email
             <input
               type='text'
               onChange={this.onHandleChange}
               name='email'
               value={email}
+              className='authFormInput'
+              placeholder='alexIvanov@mail.com'
             />
+            <div className='authFormInputIconContainer'>
+              <svg className='authFormInputIcon'>
+                <use href={sprite + "#icon-drawer"} />
+              </svg>
+            </div>
           </label>
-          <label>
+          <label className='authFormLabel'>
             Password
             <input
               type='password'
               onChange={this.onHandleChange}
               name='password'
               value={password}
+              className='authFormInput'
+              placeholder='Qwerty123'
             />
+            <div className='authFormInputIconContainer'>
+              <svg className='authFormInputIcon'>
+                <use href={sprite + "#icon-key2"} />
+              </svg>
+            </div>
           </label>
-          <label>
+          <label className='authFormLabel'>
             Confirm password
             <input
               type='text'
               onChange={this.onHandleChange}
               name='confirm'
               value={confirm}
+              className='authFormInput'
+              placeholder='Qwerty123'
             />
+            <div className='authFormInputIconContainer'>
+              <svg className='authFormInputIcon'>
+                <use href={sprite + "#icon-key2"} />
+              </svg>
+            </div>
           </label>
-          <button type='submit'>Sign up</button>
+          <button type='submit' className='authFormSubmitButton'>
+            Sign up
+          </button>
         </form>
       </AuthFormContainer>
     );
