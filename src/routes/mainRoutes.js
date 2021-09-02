@@ -1,22 +1,22 @@
-import AdminPage from "../pages/AdminPage/AdminPage";
-import AuthPage from "../pages/AuthPage/AuthPage";
-import CoursesPage from "../pages/CoursesPage";
-import GroupsPage from "../pages/GroupsPage";
-import HomePage from "../pages/HomePage";
-import ProfilePage from "../pages/ProfilePage";
+import { lazy } from "react";
+// import ProfilePage from "../pages/ProfilePage";
 
 export const mainRoutes = [
   {
     name: "home",
     path: "/",
     exact: true,
-    component: HomePage,
+    component: lazy(() =>
+      import("../pages/HomePage" /* webpackChunkName: "HomePage" */)
+    ),
   },
   {
     name: "courses",
     path: "/courses",
-    exact: true,
-    component: CoursesPage,
+    exact: false,
+    component: lazy(() =>
+      import("../pages/CoursesPage" /* webpackChunkName: "CoursesPage" */)
+    ),
   },
   // {
   //   name: "profile",
@@ -28,24 +28,32 @@ export const mainRoutes = [
     name: "groups",
     path: "/groups",
     exact: true,
-    component: GroupsPage,
+    component: lazy(() =>
+      import("../pages/GroupsPage" /* webpackChunkName: "GroupsPage" */)
+    ),
   },
   {
     name: "admin",
     path: "/admin",
     exact: false,
-    component: AdminPage,
+    component: lazy(() =>
+      import("../pages/AdminPage/AdminPage" /* webpackChunkName: "AdminPage" */)
+    ),
   },
   {
     name: "signup",
     path: "/signup",
     exact: true,
-    component: AuthPage,
+    component: lazy(() =>
+      import("../pages/AuthPage/AuthPage" /* webpackChunkName: "AuthPage" */)
+    ),
   },
   {
     name: "signin",
     path: "/signin",
     exact: true,
-    component: AuthPage,
+    component: lazy(() =>
+      import("../pages/AuthPage/AuthPage" /* webpackChunkName: "AuthPage" */)
+    ),
   },
 ];

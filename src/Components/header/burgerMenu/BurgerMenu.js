@@ -13,6 +13,7 @@ const BurgerMenu = () => {
   const { language, changeLanguage } = useContext(CustomLanguage);
 
   const toggleModal = () => setBurgerMenuOpen((prev) => !prev);
+
   const setLanguage = (e) => {
     const { value } = e.target;
     changeLanguage(value);
@@ -29,7 +30,10 @@ const BurgerMenu = () => {
         {isBurgerMenuOpen && (
           <Modal closeModal={toggleModal}>
             <div className='burgerBackdrop'>
-              <Navigation />
+              <Navigation
+                isBurgerMenuOpen={isBurgerMenuOpen}
+                toggleModal={toggleModal}
+              />
               <div className='burgerOptionsContainer'>
                 <div className='burgerOption'>
                   <span className='switcherTitle'>

@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const signUp = async (email, password) => {
+const signUp = async (user) => {
   try {
     return await axios.post(process.env.REACT_APP_SIGNUP_URL, {
-      email,
-      password,
+      ...user,
       returnSecureToken: true,
     });
   } catch (error) {
@@ -12,11 +11,10 @@ const signUp = async (email, password) => {
   }
 };
 
-const signIn = async (email, password) => {
+const signIn = async (user) => {
   try {
     return await axios.post(process.env.REACT_APP_SIGNIN_URL, {
-      email,
-      password,
+      ...user,
       returnSecureToken: true,
     });
   } catch (error) {

@@ -1,9 +1,11 @@
+import { lazy } from "react";
+
 export const adminRoutes = [
   {
     name: "courses",
     path: "/courses",
     exact: true,
-    component: () => <h2>Courses</h2>,
+    component: lazy(() => import("../Components/courses/Courses")),
   },
   {
     name: "groups",

@@ -1,8 +1,6 @@
 import React, { createContext } from "react";
 import { ThemeProvider } from "styled-components";
-import data from "../data";
 import GlobalStyles from "../styles/globalStyles";
-
 import Header from "./header/Header";
 import usePersistedLanguage from "./hooks/usePersistedLanguage";
 import { usePersistedTheme } from "./hooks/usePersistedTheme";

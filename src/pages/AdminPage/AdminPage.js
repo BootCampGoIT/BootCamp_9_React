@@ -1,10 +1,25 @@
-import React from "react";
-import { NavLink, Route, Switch, withRouter } from "react-router-dom";
-import CourseDetails from "../../Components/courses/coursesForm/courseDetails/CourseDetails";
+import React, { Suspense, useEffect } from "react";
+import {
+  NavLink,
+  Route,
+  Switch,
+  useRouteMatch,
+  useHistory,
+} from "react-router-dom";
+
+import LoaderComponent from "../../Components/loader/Loader";
 import { adminRoutes } from "../../routes/adminRoutes";
 import { AdminPageContainer } from "./AdminPageStyled";
+import CourseDetails from "../../Components/courses/courseDetails/CourseDetails";
 
-const AdminPage = ({ match }) => {
+const AdminPage = () => {
+  const match = useRouteMatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    history.replace(`${match.url}/courses`);
+  }, [history, match.url]);
+
   return (
     <AdminPageContainer>
       <ul className='navList'>
@@ -20,23 +35,25 @@ const AdminPage = ({ match }) => {
           </li>
         ))}
       </ul>
-      <Switch>
-        {adminRoutes.map((route) => (
+      <Suspense fallback={<LoaderComponent />}>
+        <Switch>
+          {adminRoutes.map((route) => (
+            <Route
+              key={route.path}
+              path={match.path + route.path}
+              exact={route.exact}
+              component={route.component}
+            />
+          ))}
           <Route
-            key={route.path}
-            path={match.path + route.path}
-            exact={route.exact}
-            component={route.component}
+            path='/admin/courses/:courseId'
+            exact
+            component={CourseDetails}
           />
-        ))}
-        <Route
-          path='/admin/courses/:courseId'
-          exact
-          component={CourseDetails}
-        />
-      </Switch>
+        </Switch>
+      </Suspense>
     </AdminPageContainer>
   );
 };
 
-export default withRouter(AdminPage);
+export default AdminPage;

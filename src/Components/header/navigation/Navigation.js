@@ -4,14 +4,17 @@ import { mainRoutes } from "../../../routes/mainRoutes";
 import { CustomLanguage } from "../../App";
 import { NavigationContainer } from "./NavigationStyled";
 
-const Navigation = () => {
+const Navigation = ({ isBurgerMenuOpen = false, toggleModal = null }) => {
   const { language } = useContext(CustomLanguage);
+  const closeModal = () => {
+    isBurgerMenuOpen && toggleModal();
+  };
   return (
     <>
       <NavigationContainer>
         <ul className='navList'>
           {mainRoutes.map((link) => (
-            <li key={link.path} className='navItem'>
+            <li key={link.path} className='navItem' onClick={closeModal}>
               <NavLink
                 exact={link.exact}
                 to={link.path}
@@ -28,5 +31,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-// const styles = {};
