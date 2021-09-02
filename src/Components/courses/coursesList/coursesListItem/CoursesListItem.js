@@ -1,18 +1,25 @@
 import React from "react";
+import { CourseListItemContainer } from "./CourseListItemStyled";
 
 const CoursesListItem = ({ id, avatar, name, description, deleteCourse }) => {
   const deleteItem = () => deleteCourse(id);
   return (
-    <li className='courseListItem' key={id}>
-      <div className='courseAvatarBlock'>
-        <img src={avatar} alt={name} className='courseAvatar' />
+    <CourseListItemContainer>
+      <div className='courseListItemContent'>
+        <div className='courseAvatarBlock'>
+          <img src={avatar} alt={name} className='courseAvatar' />
+        </div>
+        <div className='courseListItemTitleBlock'>
+          <h2 className='courseListItemTitle'>{name}</h2>
+        </div>
+        <button
+          type='button'
+          onClick={deleteItem}
+          className='courseListItemTitle'>
+          Delete
+        </button>
       </div>
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <button type='button' onClick={deleteItem}>
-        Delete
-      </button>
-    </li>
+    </CourseListItemContainer>
   );
 };
 

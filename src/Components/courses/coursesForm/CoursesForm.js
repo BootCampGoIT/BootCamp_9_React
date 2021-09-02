@@ -40,19 +40,24 @@ const CoursesForm = ({ addCourse }) => {
 
   return (
     <CourseFormContainer onSubmit={onHandleSubmit}>
-      <div className='avatarContainer'>
+      <div className='coursesFormAvatarContainer'>
         <div className='avatarImageBlock'>
-          <img src={user.avatar} alt={user.name} className='avatarImage' />
+          {user.avatar && (
+            <img src={user.avatar} alt={user.name} className='avatarImage' />
+          )}
         </div>
-        <label className='coursesFormLabel'>
-          {language.courses.courseForm["avatar"]}
-          <input
-            type='file'
-            name='avatar'
-            onChange={onChangeAvatar}
-            className='coursesFormInput'
-          />
-        </label>
+
+        <div className='courseFormAvatarBlock'>
+          <label className='courseFormAvatarButton'>
+            <input
+              className='courseFormAvatarFile'
+              name='avatar'
+              type='file'
+              onChange={onChangeAvatar}
+            />
+            <span className='courseFormAvatarButtonText'>Add image</span>
+          </label>
+        </div>
       </div>
       <label className='coursesFormLabel'>
         {language.courses.courseForm["name"]}
