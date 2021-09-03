@@ -15,7 +15,7 @@ const CoursesPage = () => {
       </p>
       <Switch>
         <Route
-          path={match.path + `/:courseID`}
+          path={match.path + `/:courseId`}
           exact
           component={CourseDetails}
         />

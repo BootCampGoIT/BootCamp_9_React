@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const getCourses = async () => {
   try {
     const response = await axios.get(
@@ -11,6 +10,28 @@ export const getCourses = async () => {
       id: key,
     }));
     return courses;
+  } catch (error) {
+    throw new Error(error.response.data.error.message);
+  }
+};
+
+export const getCourseByID = async (id) => {
+  try {
+    const response = await axios.get(
+      `https://bc-9-platform-default-rtdb.firebaseio.com/courses/${id}.json`
+    );
+    return { ...response.data, id };
+  } catch (error) {
+    throw new Error(error.response.data.error.message);
+  }
+};
+
+export const patchCourseByID = async (courseEdited) => {
+  try {
+    return await axios.patch(
+      `https://bc-9-platform-default-rtdb.firebaseio.com/courses/${courseEdited.id}.json`,
+      { name: courseEdited.name }
+    );
   } catch (error) {
     throw new Error(error.response.data.error.message);
   }

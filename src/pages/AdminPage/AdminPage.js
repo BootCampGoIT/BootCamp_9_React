@@ -37,6 +37,10 @@ const AdminPage = () => {
       </ul>
       <Suspense fallback={<LoaderComponent />}>
         <Switch>
+          <Route
+            path={match.path + "/courses/:courseId"}
+            component={CourseDetails}
+          />
           {adminRoutes.map((route) => (
             <Route
               key={route.path}
@@ -45,11 +49,6 @@ const AdminPage = () => {
               component={route.component}
             />
           ))}
-          <Route
-            path='/admin/courses/:courseId'
-            exact
-            component={CourseDetails}
-          />
         </Switch>
       </Suspense>
     </AdminPageContainer>

@@ -1,18 +1,16 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { getCourseByID } from "../../../services/coursesAPI";
 
 const CourseDetails = () => {
   const [course, setCourse] = useState(null);
-  const { courseID } = useParams();
+  const { courseId } = useParams();
+
 
   useEffect(() => {
-    axios
-      .get(
-        `https://bc-9-platform-default-rtdb.firebaseio.com/courses/${courseID}.json`
-      )
-      .then((res) => setCourse(res.data));
-  }, [courseID]);
+    getCourseByID(courseId).then((res) => setCourse(res));
+  }, [courseId]);
   return (
     <>
       {course && (

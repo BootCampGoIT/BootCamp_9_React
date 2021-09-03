@@ -2,7 +2,6 @@ import React from "react";
 const HomePage = () => {
   return (
     <>
-     
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque
         consectetur totam officia atque eum consequatur nemo, eius facilis sit

@@ -9,7 +9,6 @@ export const FolderListContainer = styled.ul`
   display: flex;
   flex-direction: column;
 
-
   .folderItem {
     position: relative;
     margin-left: 10px;
@@ -58,5 +57,22 @@ export const FolderListContainer = styled.ul`
 
   .folderListContainer {
     margin-left: 15px;
+  }
+
+  .folderItemOption {
+    width: 20px;
+    height: 20px;
+    border: 1px solid ${({ theme }) => theme.colors.main};
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  .folderItemOptionIcon {
+    width: 60%;
+    height: 60%;
+    fill: ${({ theme }) => theme.colors.main};
   }
 `;

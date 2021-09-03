@@ -20,16 +20,9 @@ const Main = () => {
               component={component}
               // render={(props) => (
               //   <>
-              //     {/* <button type='button' onClick={props.history.goBack}>
-              //       GoBack
-              //     </button>
-              //     <button type='button' onClick={props.history.goForward}>
-              //       GoForward
-              //     </button>
-              //     {console.log("props :>> ", props)} */}
-              //     {/* <Section title={name}> */}
-              //     <MyComponent />
-              //     {/* </Section> */}
+              //     <Section title={name}>
+              //       <MyComponent {...props} />
+              //     </Section>
               //   </>
               // )}
             />

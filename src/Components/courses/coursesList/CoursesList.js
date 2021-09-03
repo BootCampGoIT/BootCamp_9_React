@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getCourses } from "../../../services/coursesAPI";
+import { TransferContent } from "../../App";
 
 import CoursesListItem from "./coursesListItem/CoursesListItem";
 import { CoursesListStyled } from "./CoursesListStyled";
@@ -11,21 +12,28 @@ const initialState = {
 
 const CoursesList = ({ courses = null, deleteCourse = null }) => {
   const [state, setState] = useState(() => ({ ...initialState }));
+  const transferData = useContext(TransferContent);
 
   useEffect(() => {
     const getAllCourses = async () => {
       try {
         const courses = await getCourses();
         setState((prev) => ({ ...prev, courses }));
+        transferData.setContent({ courses });
       } catch (error) {
         setState((prev) => ({ ...prev, error: "No matches" }));
       }
     };
-    !courses && getAllCourses();
+    if (!courses && !transferData.transferContent?.courses) {
+      getAllCourses();
+    } else
+      setState((prev) => ({
+        ...prev,
+        courses: transferData.transferContent?.courses,
+      }));
   }, [courses]);
 
   const selectData = () => courses || state.courses;
-
   return (
     <CoursesListStyled>
       {selectData().map((course) => (

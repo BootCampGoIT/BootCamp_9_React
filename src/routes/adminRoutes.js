@@ -5,7 +5,7 @@ export const adminRoutes = [
     name: "courses",
     path: "/courses",
     exact: true,
-    component: lazy(() => import("../Components/courses/Courses")),
+    component: lazy(() => import("../Components/courses/courseRedactor/CourseRedactor")),
   },
   {
     name: "groups",
