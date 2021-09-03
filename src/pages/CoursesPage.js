@@ -8,11 +8,6 @@ const CoursesPage = () => {
   const match = useRouteMatch();
   return (
     <>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, itaque
-        autem! Impedit eaque aspernatur, enim delectus est suscipit facere
-        corporis.
-      </p>
       <Switch>
         <Route
           path={match.path + `/:courseId`}

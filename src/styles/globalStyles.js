@@ -20,6 +20,7 @@ button {
     outline: none;
     cursor: pointer;
     padding: 0 24px;
+    transition: all 300ms linear;
 }
 
 button:hover {

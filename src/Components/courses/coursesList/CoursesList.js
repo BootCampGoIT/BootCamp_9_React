@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import { getCourses } from "../../../services/coursesAPI";
 import { TransferContent } from "../../App";
-
 import CoursesListItem from "./coursesListItem/CoursesListItem";
 import { CoursesListStyled } from "./CoursesListStyled";
+
 
 const initialState = {
   courses: [],
   error: "",
 };
 
-const CoursesList = ({ courses = null, deleteCourse = null }) => {
+const CoursesList = ({
+  courses = null,
+  deleteCourse = null,
+  children = null,
+}) => {
   const [state, setState] = useState(() => ({ ...initialState }));
   const transferData = useContext(TransferContent);
 
@@ -36,6 +40,7 @@ const CoursesList = ({ courses = null, deleteCourse = null }) => {
   const selectData = () => courses || state.courses;
   return (
     <CoursesListStyled>
+      {children}
       {selectData().map((course) => (
         <CoursesListItem
           {...course}

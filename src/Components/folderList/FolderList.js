@@ -5,6 +5,8 @@ import { FolderListContainer } from "./FolderListStyled";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { deleteCourse, patchCourseByID } from "../../services/coursesAPI";
+import data from "../../data/courses.json";
+console.log("data :>> ", data);
 
 const FolderList = ({ arr, patchCourse }) => {
   const history = useHistory();

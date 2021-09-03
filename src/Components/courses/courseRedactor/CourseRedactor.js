@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getCourses } from "../../../services/coursesAPI";
 import FolderList from "../../folderList/FolderList";
+import CoursesList from "../coursesList/CoursesList";
+import AddNewItem from "./addNewItem/AddNewItem";
 
 const initialState = {
   courses: [],
@@ -33,7 +35,10 @@ const CourseRedactor = () => {
 
   return (
     <>
-      <FolderList arr={state.courses} patchCourse={patchCourse}/>
+      <CoursesList>
+        <AddNewItem />
+      </CoursesList>
+      {/* <FolderList arr={state.courses} patchCourse={patchCourse}/> */}
     </>
   );
 };

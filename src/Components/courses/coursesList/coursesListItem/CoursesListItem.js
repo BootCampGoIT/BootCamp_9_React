@@ -20,7 +20,7 @@ const CoursesListItem = ({ id, avatar, name, deleteCourse }) => {
           <h2 className='courseListItemTitle'>{name}</h2>
         </div>
         <button type='button' onClick={openDetails}>
-          Show details
+          Details
         </button>
         {deleteCourse && (
           <button
