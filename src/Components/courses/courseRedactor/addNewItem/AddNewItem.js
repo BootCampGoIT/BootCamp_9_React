@@ -2,9 +2,9 @@ import React from "react";
 import { AddNewItemContainer } from "./AddNewItemStyled";
 import sprite from "../../../../icons/courses/spite.svg";
 
-const AddNewItem = () => {
+const AddNewItem = ({ addItem }) => {
   return (
-    <AddNewItemContainer>
+    <AddNewItemContainer onClick={addItem}>
       <div className='courseListItemAddNewContent'>
         <svg className='courseListItemAddNewIcon'>
           <use href={sprite + "#icon-plus"} />

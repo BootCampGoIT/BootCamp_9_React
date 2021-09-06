@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getCourses } from "../../../services/coursesAPI";
-import FolderList from "../../folderList/FolderList";
+import Modal from "../../modal/Modal";
+import CoursesForm from "../coursesForm/CoursesForm";
+
 import CoursesList from "../coursesList/CoursesList";
 import AddNewItem from "./addNewItem/AddNewItem";
 
@@ -11,6 +13,7 @@ const initialState = {
 
 const CourseRedactor = () => {
   const [state, setState] = useState(() => ({ ...initialState }));
+  const [isCourseFormOpen, setCourseFormOpen] = useState(false);
 
   useEffect(() => {
     const getAllCourses = async () => {
@@ -24,6 +27,8 @@ const CourseRedactor = () => {
     getAllCourses();
   }, []);
 
+  const toggleCourseForm = () => setCourseFormOpen((prev) => !prev);
+
   const patchCourse = (newCourse) => {
     setState((prev) => ({
       ...prev,
@@ -36,9 +41,13 @@ const CourseRedactor = () => {
   return (
     <>
       <CoursesList>
-        <AddNewItem />
+        <AddNewItem addItem={toggleCourseForm} />
       </CoursesList>
-      {/* <FolderList arr={state.courses} patchCourse={patchCourse}/> */}
+      {isCourseFormOpen && (
+        <Modal closeModal={toggleCourseForm}>
+          <CoursesForm closeCourseForm={toggleCourseForm}/>
+        </Modal>
+      )}
     </>
   );
 };

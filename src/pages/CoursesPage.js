@@ -9,16 +9,16 @@ const CoursesPage = () => {
   const match = useRouteMatch();
   return (
     <>
-      <CoursesForm />
-      <CoursesList />
-      {/* <Switch>
+      {/* <CoursesForm />
+      <CoursesList /> */}
+      <Switch>
         <Route
           path={match.path + `/:courseId`}
           exact
           component={CourseDetails}
         />
         <Route path={match.path} exact component={CoursesList} />
-      </Switch> */}
+      </Switch>
     </>
   );
 };

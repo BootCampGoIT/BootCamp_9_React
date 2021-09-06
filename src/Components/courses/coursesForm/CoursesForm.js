@@ -22,7 +22,12 @@ const initialState = {
   modules: [],
 };
 
-const CoursesForm = ({ createCourse, setLoader, isLoading }) => {
+const CoursesForm = ({
+  createCourse,
+  setLoader,
+  isLoading,
+  closeCourseForm,
+}) => {
   const [course, setCourse] = useState({ ...initialState });
   const { language } = useContext(CustomLanguage);
 
@@ -45,6 +50,7 @@ const CoursesForm = ({ createCourse, setLoader, isLoading }) => {
     } catch (error) {
     } finally {
       setLoader();
+      closeCourseForm();
     }
 
     setCourse({ ...initialState });
@@ -104,7 +110,7 @@ const CoursesForm = ({ createCourse, setLoader, isLoading }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     isLoading: state.courses.isLoading,
   };
