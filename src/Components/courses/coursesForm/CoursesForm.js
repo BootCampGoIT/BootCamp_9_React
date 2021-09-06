@@ -1,7 +1,11 @@
 import React, { useState, useContext } from "react";
+import { createCourse, setLoader } from "../../../redux/courses/coursesActions";
 import { CustomLanguage } from "../../App";
 
 import { CourseFormContainer } from "./CoursesFormStyled";
+import { connect } from "react-redux";
+import { addCourse } from "../../../services/coursesAPI";
+import LoaderComponent from "../../loader/Loader";
 
 const toDataURL = (element) => {
   return new Promise((resolve) => {
@@ -18,72 +22,97 @@ const initialState = {
   modules: [],
 };
 
-const CoursesForm = ({ addCourse }) => {
-  const [user, setUser] = useState({ ...initialState });
+const CoursesForm = ({ createCourse, setLoader, isLoading }) => {
+  const [course, setCourse] = useState({ ...initialState });
   const { language } = useContext(CustomLanguage);
 
   const onHandleChange = (e) => {
     const { name, value } = e.target;
-    setUser((prev) => ({ ...prev, [name]: value }));
+    setCourse((prev) => ({ ...prev, [name]: value }));
   };
 
   const onChangeAvatar = (e) => {
     toDataURL(e.target).then((data) =>
-      setUser((prev) => ({ ...prev, avatar: data }))
+      setCourse((prev) => ({ ...prev, avatar: data }))
     );
   };
-  const onHandleSubmit = (e) => {
+  const onHandleSubmit = async (e) => {
     e.preventDefault();
-    addCourse(user);
-    setUser({ ...initialState });
+    try {
+      setLoader();
+      const id = await addCourse(course);
+      createCourse({ id, ...course });
+    } catch (error) {
+    } finally {
+      setLoader();
+    }
+
+    setCourse({ ...initialState });
   };
 
   return (
-    <CourseFormContainer onSubmit={onHandleSubmit}>
-      <div className='coursesFormAvatarContainer'>
-        <div className='avatarImageBlock'>
-          {user.avatar && (
-            <img src={user.avatar} alt={user.name} className='avatarImage' />
-          )}
-        </div>
+    <>
+      {isLoading && <LoaderComponent />}
+      <CourseFormContainer onSubmit={onHandleSubmit}>
+        <div className='coursesFormAvatarContainer'>
+          <div className='avatarImageBlock'>
+            {course.avatar && (
+              <img
+                src={course.avatar}
+                alt={course.name}
+                className='avatarImage'
+              />
+            )}
+          </div>
 
-        <div className='courseFormAvatarBlock'>
-          <label className='courseFormAvatarButton'>
-            <input
-              className='courseFormAvatarFile'
-              name='avatar'
-              type='file'
-              onChange={onChangeAvatar}
-            />
-            <span className='courseFormAvatarButtonText'>Add image</span>
-          </label>
+          <div className='courseFormAvatarBlock'>
+            <label className='courseFormAvatarButton'>
+              <input
+                className='courseFormAvatarFile'
+                name='avatar'
+                type='file'
+                onChange={onChangeAvatar}
+              />
+              <span className='courseFormAvatarButtonText'>Add image</span>
+            </label>
+          </div>
         </div>
-      </div>
-      <label className='coursesFormLabel'>
-        {language.courses.courseForm["name"]}
-        <input
-          type='text'
-          value={user.name}
-          onChange={onHandleChange}
-          name='name'
-          className='coursesFormInput'
-        />
-      </label>
-      <label className='coursesFormLabel'>
-        {language.courses.courseForm["description"]}
-        <textarea
-          name='description'
-          value={user.description}
-          onChange={onHandleChange}
-          className='coursesFormArea'
-        />
-      </label>
-      <button type='submit'> {language.courses.courseForm["addCourse"]}</button>
-    </CourseFormContainer>
+        <label className='coursesFormLabel'>
+          {language.courses.courseForm["name"]}
+          <input
+            type='text'
+            value={course.name}
+            onChange={onHandleChange}
+            name='name'
+            className='coursesFormInput'
+          />
+        </label>
+        <label className='coursesFormLabel'>
+          {language.courses.courseForm["description"]}
+          <textarea
+            name='description'
+            value={course.description}
+            onChange={onHandleChange}
+            className='coursesFormArea'
+          />
+        </label>
+        <button type='submit'>
+          {language.courses.courseForm["addCourse"]}
+        </button>
+      </CourseFormContainer>
+    </>
   );
 };
 
-export default CoursesForm;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoading: state.courses.isLoading,
+  };
+};
+
+export default connect(mapStateToProps, { createCourse, setLoader })(
+  CoursesForm
+);
 
 // class CoursesForm extends Component {
 //   state = {
