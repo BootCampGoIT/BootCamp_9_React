@@ -5,6 +5,7 @@ import CoursesForm from "../coursesForm/CoursesForm";
 
 import CoursesList from "../coursesList/CoursesList";
 import AddNewItem from "./addNewItem/AddNewItem";
+import { CourseRedactorContainer } from "./CourseRedactorStyled";
 
 const initialState = {
   courses: [],
@@ -29,26 +30,28 @@ const CourseRedactor = () => {
 
   const toggleCourseForm = () => setCourseFormOpen((prev) => !prev);
 
-  const patchCourse = (newCourse) => {
-    setState((prev) => ({
-      ...prev,
-      courses: prev.courses.map((course) =>
-        course.id === newCourse.id ? newCourse : course
-      ),
-    }));
-  };
+  // const patchCourse = (newCourse) => {
+  //   setState((prev) => ({
+  //     ...prev,
+  //     courses: prev.courses.map((course) =>
+  //       course.id === newCourse.id ? newCourse : course
+  //     ),
+  //   }));
+  // };
 
   return (
-    <>
+    <CourseRedactorContainer>
       <CoursesList>
         <AddNewItem addItem={toggleCourseForm} />
       </CoursesList>
       {isCourseFormOpen && (
         <Modal closeModal={toggleCourseForm}>
-          <CoursesForm closeCourseForm={toggleCourseForm}/>
+          <div className='courseFormModalWrapper'>
+            <CoursesForm closeCourseForm={toggleCourseForm} />
+          </div>
         </Modal>
       )}
-    </>
+    </CourseRedactorContainer>
   );
 };
 

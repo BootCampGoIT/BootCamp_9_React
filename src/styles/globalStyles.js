@@ -10,13 +10,13 @@ body {
 button {
     color: ${(props) => props.theme.colors.buttonText};
     background-color: ${(props) => props.theme.colors.main};
-    height: 24px;
+    height: 25px;
     font-weight: 700;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     border: none;
-    border-radius: 50pc;
+    border-radius: 16px;
     outline: none;
     cursor: pointer;
     padding: 0 24px;
@@ -29,8 +29,8 @@ button:hover {
 
 label {
     color: ${(props) => props.theme.colors.label};
-    font-size: 16px;
-    line-height: 20px;
+    /* font-size: 16px; */
+    /* line-height: 25px; */
 }
 ul {
     list-style: none;
@@ -46,10 +46,10 @@ input, select {
     border-radius: 16px;
     outline: none;
     padding: 0 12px;
-    height: 32px;
     width: 100%;
-    font-size: 16px;
-    margin: 8px 0
+    font-size: 18px;
+    margin: 8px 0;
+    line-height: 25px;
 }
 
 input::-webkit-input-placeholder {
@@ -65,12 +65,12 @@ input:-ms-input-placeholder{
     color: "#dbd7d8";
 }
 
-input::-webkit-input-placeholder{opacity: 0.5; transition: opacity 0.3s ease;}
-input::-moz-placeholder{opacity: 0.5; transition: opacity 0.3s ease;}
-input:-moz-placeholder{opacity: 0.5; transition: opacity 0.3s ease;}
-input:-ms-input-placeholder{opacity: 0.5; transition: opacity 0.3s ease;}
-input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
-input:focus::-moz-placeholder{opacity: 0; transition: opacity 0.3s ease;}
-input:focus:-moz-placeholder{opacity: 0; transition: opacity 0.3s ease;}
-input:focus:-ms-input-placeholder{opacity: 0; transition: opacity 0.3s ease;}
+input::-webkit-input-placeholder{opacity: 0.5; transition: opacity 0.3s linear;}
+input::-moz-placeholder{opacity: 0.5; transition: opacity 0.3s linear;}
+input:-moz-placeholder{opacity: 0.5; transition: opacity 0.3s linear;}
+input:-ms-input-placeholder{opacity: 0.5; transition: opacity 0.3s linear;}
+input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s linear;}
+input:focus::-moz-placeholder{opacity: 0; transition: opacity 0.3s linear;}
+input:focus:-moz-placeholder{opacity: 0; transition: opacity 0.3s linear;}
+input:focus:-ms-input-placeholder{opacity: 0; transition: opacity 0.3s linear;}
 `;

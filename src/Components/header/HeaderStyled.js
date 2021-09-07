@@ -13,7 +13,7 @@ export const HeaderContainer = styled.header`
     text-transform: uppercase;
     color: ${({ theme }) => theme.colors.main};
     font-size: 24px;
-    font-weight: 700;
+   
   }
 
   .headerNavigationBlock {
@@ -54,6 +54,7 @@ export const HeaderContainer = styled.header`
   }
   .headerSettingsTitle {
     text-align: center;
+    text-transform: uppercase;
     color: ${({ theme }) => theme.colors.main};
   }
   .headerSettingsIconContainer,
@@ -69,7 +70,6 @@ export const HeaderContainer = styled.header`
     transition: all 300ms linear;
     cursor: pointer;
   }
-  
 
   .headerSettingsIconClose:hover {
     fill: ${({ theme }) => theme.colors.active};

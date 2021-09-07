@@ -14,7 +14,7 @@ export const NavigationContainer = styled.nav`
   .navLink {
     text-transform: uppercase;
     color: ${(props) => props.theme.colors.text};
-    font-weight: 700;
+
     &:hover {
       color: ${(props) => props.theme.colors.active};
     }

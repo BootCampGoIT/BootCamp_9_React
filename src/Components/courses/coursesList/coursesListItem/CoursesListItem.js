@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 const CoursesListItem = ({ id, avatar, name, deleteCourse }) => {
   const history = useHistory();
-  console.log("history :>> ", history);
   const deleteItem = () => deleteCourse(id);
 
   const openDetails = () => {

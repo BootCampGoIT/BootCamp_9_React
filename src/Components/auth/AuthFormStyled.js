@@ -29,10 +29,10 @@ export const AuthFormContainer = styled.div`
 
   .authFormInputIconContainer {
     position: absolute;
-    top: 34px;
+    top: 30px;
     left: 12px;
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     transition: opacity 300ms linear;
   }
 

@@ -1,10 +1,8 @@
 import { Suspense } from "react";
 
 import { MainContainer } from "./MainStyled";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { mainRoutes } from "../../routes/mainRoutes";
-import NotFoundPage from "../../pages/NotFoundPage";
-import Section from "../section/Section";
 import LoaderComponent from "../loader/Loader";
 
 const Main = () => {

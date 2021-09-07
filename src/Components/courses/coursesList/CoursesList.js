@@ -3,7 +3,6 @@ import { getCourses } from "../../../services/coursesAPI";
 import { TransferContent } from "../../App";
 import CoursesListItem from "./coursesListItem/CoursesListItem";
 import { CoursesListStyled } from "./CoursesListStyled";
-import { useSelector } from "react-redux";
 
 const initialState = {
   courses: [],
