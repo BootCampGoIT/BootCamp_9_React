@@ -7,6 +7,7 @@ export const ukrainian = {
       courses: "Курси",
       groups: "Групи",
       profile: "Профіль",
+      tasks: "Завдання",
       admin: "Адмін",
       signin: "Увійти",
       signup: "Зареєструватись",

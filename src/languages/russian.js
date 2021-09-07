@@ -7,6 +7,7 @@ export const russian = {
       courses: "Курсы",
       groups: "Группы",
       profile: "Профиль",
+      tasks: "Задачи",
       admin: "Админ",
       signin: "Войти",
       signup: "Зарегистрироваться",

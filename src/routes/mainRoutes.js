@@ -33,6 +33,14 @@ export const mainRoutes = [
     ),
   },
   {
+    name: "tasks",
+    path: "/tasks",
+    exact: true,
+    component: lazy(() =>
+      import("../pages/TasksPage" /* webpackChunkName: "TasksPage" */)
+    ),
+  },
+  {
     name: "admin",
     path: "/admin",
     exact: false,
