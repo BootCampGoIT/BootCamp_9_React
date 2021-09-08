@@ -11,14 +11,16 @@ export const getCourses = async () => {
     }));
     return courses;
   } catch (error) {
-    throw new Error(error.response.data.error.message);
+    if (error.response.status === 404) {
+      throw new Error("!!!!!!!!!!!!!!!!!!!!!");
+    }
   }
 };
 
 export const getCourseByID = async (id) => {
   try {
     const response = await axios.get(
-      `https://bc-9-platform-default-rtdb.firebaseio.com/courses/${id}.json`
+      process.env.REACT_APP_BASE_URL + `/courses/${id}.json`
     );
     return { ...response.data, id };
   } catch (error) {
@@ -29,7 +31,7 @@ export const getCourseByID = async (id) => {
 export const patchCourseByID = async (courseEdited) => {
   try {
     return await axios.patch(
-      `https://bc-9-platform-default-rtdb.firebaseio.com/courses/${courseEdited.id}.json`,
+      process.env.REACT_APP_BASE_URL + `/courses/${courseEdited.id}.json`,
       { name: courseEdited.name }
     );
   } catch (error) {

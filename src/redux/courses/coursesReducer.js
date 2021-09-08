@@ -1,10 +1,18 @@
 import { combineReducers } from "redux";
-import { CREATE_COURSE, SET_LOADER } from "./coursesActions";
+import {
+  CREATE_COURSE,
+  GET_COURSES,
+  RESET_ERROR,
+  SET_ERROR,
+  SET_LOADER,
+} from "./coursesActions";
 
 export const coursesItems = (state = [], { type, payload }) => {
   switch (type) {
     case CREATE_COURSE:
       return [...state, payload];
+    case GET_COURSES:
+      return payload;
 
     default:
       return state;
@@ -12,7 +20,14 @@ export const coursesItems = (state = [], { type, payload }) => {
 };
 
 export const errorReducer = (state = "", action) => {
-  return state;
+  switch (action.type) {
+    case SET_ERROR:
+      return action.payload;
+    case RESET_ERROR:
+      return "";
+    default:
+      return state;
+  }
 };
 
 export const loaderReducer = (state = false, { type }) => {

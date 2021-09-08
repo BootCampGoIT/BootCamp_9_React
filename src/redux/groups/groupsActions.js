@@ -1,5 +1,7 @@
-const ADD_GROUP = "-=/groups/addGroup=-";
-const SET_ERROR = "/groups/setError";
+const ADD_GROUP = "@/groups/addGroup";
+const SET_ERROR = "@/groups/setError";
+const GET_GROUPS = "@/groups/getGroups";
+const SET_LOADER = "@/groups/setLoader";
 
 const createGroup = (group) => {
   return {
@@ -15,5 +17,15 @@ const setError = (text) => {
   };
 };
 
-export { ADD_GROUP, SET_ERROR };
-export { createGroup, setError };
+
+const getGroups = (groups) => ({
+  type: GET_GROUPS,
+  payload: groups,
+});
+
+const setLoader = () => ({
+  type: SET_LOADER,
+});
+
+export { ADD_GROUP, SET_ERROR, GET_GROUPS, SET_LOADER };
+export { createGroup, setError, getGroups, setLoader };

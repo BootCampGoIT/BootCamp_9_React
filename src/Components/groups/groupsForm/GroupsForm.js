@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createGroup, setError } from "../../../redux/groups/groupsActions";
+import { addGroupsOperation } from "../../../redux/groups/groupsOperations";
 import { GroupFormContainer } from "./GroupFormStyled";
 
 const initialState = {
@@ -19,8 +20,8 @@ const GroupsForm = () => {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    groups.some((group) => group.name === state.name)
-      ? dispatch(createGroup(state))
+    !groups.some((group) => group.name === state.name)
+      ? dispatch(addGroupsOperation(state))
       : dispatch(setError("Group already exist"));
   };
   return (

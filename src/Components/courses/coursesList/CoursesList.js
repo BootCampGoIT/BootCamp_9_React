@@ -1,52 +1,35 @@
-import React, { useState, useEffect, useContext } from "react";
-import { getCourses } from "../../../services/coursesAPI";
-import { TransferContent } from "../../App";
+import React, { useEffect } from "react";
+
 import CoursesListItem from "./coursesListItem/CoursesListItem";
 import { CoursesListStyled } from "./CoursesListStyled";
+import { useSelector, useDispatch } from "react-redux";
+import { getCoursesOperation } from "../../../redux/courses/coursesOperations";
+import { resetError } from "../../../redux/courses/coursesActions";
 
-const initialState = {
-  courses: [],
-  error: "",
-};
-
-const CoursesList = ({
-  courses = null,
-  deleteCourse = null,
-  children = null,
-}) => {
-  const [state, setState] = useState(() => ({ ...initialState }));
-  const transferData = useContext(TransferContent);
+const CoursesList = ({ children }) => {
+  const dispatch = useDispatch();
+  const courses = useSelector((state) => state.courses.items);
+  const error = useSelector((state) => state.courses.error);
 
   useEffect(() => {
-    const getAllCourses = async () => {
-      try {
-        const courses = await getCourses();
-        setState((prev) => ({ ...prev, courses }));
-        transferData.setContent({ courses });
-      } catch (error) {
-        setState((prev) => ({ ...prev, error: "No matches" }));
-      }
+    dispatch(getCoursesOperation());
+    return () => {
+      error && dispatch(resetError());
     };
-    if (!courses && !transferData.transferContent?.courses) {
-      getAllCourses();
-    } else
-      setState((prev) => ({
-        ...prev,
-        courses: transferData.transferContent?.courses,
-      }));
-  }, [courses]);
+  }, [dispatch, error]);
 
-  const selectData = () => courses || state.courses;
   return (
     <CoursesListStyled>
-      {children}
-      {selectData().map((course) => (
-        <CoursesListItem
-          {...course}
-          deleteCourse={deleteCourse}
-          key={course.id}
-        />
-      ))}
+      {!error ? (
+        <>
+          {children}
+          {courses.map((course) => (
+            <CoursesListItem {...course} key={course.id} />
+          ))}
+        </>
+      ) : (
+        <p>{error}</p>
+      )}
     </CoursesListStyled>
   );
 };
