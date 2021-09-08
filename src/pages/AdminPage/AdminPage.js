@@ -11,13 +11,16 @@ import LoaderComponent from "../../Components/loader/Loader";
 import { adminRoutes } from "../../routes/adminRoutes";
 import { AdminPageContainer } from "./AdminPageStyled";
 import CourseDetails from "../../Components/courses/courseDetails/CourseDetails";
+import GroupDetails from "../../Components/groups/groupDetails/GroupDetails";
 
 const AdminPage = () => {
   const match = useRouteMatch();
   const history = useHistory();
 
   useEffect(() => {
-    history.replace(`${match.url}/courses`);
+    if (history.location.pathname === "/admin") {
+      history.replace(`${match.url}/courses`);
+    }
   }, [history, match.url]);
 
   return (
@@ -40,6 +43,12 @@ const AdminPage = () => {
           <Route
             path={match.path + "/courses/:courseId"}
             component={CourseDetails}
+            exact={false}
+          />
+          <Route
+            path={match.path + "/groups/:groupId"}
+            component={GroupDetails}
+            exact={false}
           />
           {adminRoutes.map((route) => (
             <Route

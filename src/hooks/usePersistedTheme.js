@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import themes from "../../themes";
+import themes from "../themes";
 
 const persistLocalStorage = () => {
   const currentTheme = JSON.parse(localStorage.getItem("theme")); //"dark"

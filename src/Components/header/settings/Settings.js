@@ -31,7 +31,7 @@ const Settings = () => {
             height={14}
             width={34}
             handleDiameter={14}
-            className="settingsThemeSwitcher"
+            className='settingsThemeSwitcher'
           />
         </div>
         <div className='burgerOption'>

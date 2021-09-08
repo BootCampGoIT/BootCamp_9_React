@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { languages } from "../../languages";
+import { languages } from "../languages";
 
 const usePersistedLanguage = () => {
   const [language, setLanguage] = useState(() => {
@@ -8,13 +8,13 @@ const usePersistedLanguage = () => {
   });
 
   const changeLanguage = (lang) => {
-      setLanguage(languages[lang])
-  }
+    setLanguage(languages[lang]);
+  };
   useEffect(() => {
-      localStorage.setItem("language", JSON.stringify(language.title))
-  }, [language])
+    localStorage.setItem("language", JSON.stringify(language.title));
+  }, [language]);
 
-  return [language, changeLanguage]
+  return [language, changeLanguage];
 };
 
 export default usePersistedLanguage;

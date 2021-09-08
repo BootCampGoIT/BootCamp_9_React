@@ -6,7 +6,6 @@ const CourseDetails = () => {
   const [course, setCourse] = useState(null);
   const { courseId } = useParams();
 
-
   useEffect(() => {
     getCourseByID(courseId).then((res) => setCourse(res));
   }, [courseId]);

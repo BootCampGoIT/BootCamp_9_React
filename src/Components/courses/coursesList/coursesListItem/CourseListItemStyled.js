@@ -11,7 +11,7 @@ export const CourseListItemContainer = styled.li`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid ${({ theme }) => theme.colors.primary};
+    border: 1px solid ${({ theme }) => theme.colors.secondary};
     border-radius: 16px;
     padding: 10px;
   }

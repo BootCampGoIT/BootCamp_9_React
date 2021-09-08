@@ -2,8 +2,8 @@ import React, { createContext, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "../styles/globalStyles";
 import Header from "./header/Header";
-import usePersistedLanguage from "./hooks/usePersistedLanguage";
-import { usePersistedTheme } from "./hooks/usePersistedTheme";
+import usePersistedLanguage from "../hooks/usePersistedLanguage";
+import { usePersistedTheme } from "../hooks/usePersistedTheme";
 import Main from "./main/Main";
 
 export const CustomTheme = createContext();

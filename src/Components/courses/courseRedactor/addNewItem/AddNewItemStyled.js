@@ -8,7 +8,7 @@ export const AddNewItemContainer = styled.li`
   cursor: pointer;
 
   .courseListItemAddNewContent {
-    border: 1px solid ${({ theme }) => theme.colors.primary};
+    border: 1px solid ${({ theme }) => theme.colors.secondary};
     border-radius: 16px;
     height: 100%;
     width: 100%;
@@ -18,7 +18,7 @@ export const AddNewItemContainer = styled.li`
     transition: all 300ms linear;
   }
   .courseListItemAddNewContent:hover {
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.secondary};
   }
   .courseListItemAddNewIcon {
     width: 40px;
