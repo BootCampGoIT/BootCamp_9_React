@@ -1,6 +1,7 @@
-import {  createReducer, combineReducers } from "@reduxjs/toolkit";
+import { createReducer, combineReducers } from "@reduxjs/toolkit";
 import {
   addTaskActionCreator,
+  addValue,
   deleteTaskActionCreator,
   setFilter,
 } from "./tasksActions";
@@ -15,10 +16,16 @@ const tasksFilterReducer = createReducer("", {
   [setFilter]: (_, action) => action.payload,
 });
 
+export const valueReducer = createReducer(0, {
+  [addValue]: (state) => state + 1,
+});
+
 export const tasksReducer = combineReducers({
   items: tasksItemsReducer,
   filter: tasksFilterReducer,
+  value: valueReducer,
 });
+
 // ========= redux basic ====================
 // import { combineReducers } from "redux";
 

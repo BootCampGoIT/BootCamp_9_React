@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
-import { createCourse, setLoader } from "../../../redux/courses/coursesActions";
 import { CustomLanguage } from "../../App";
-
 import { CourseFormContainer } from "./CoursesFormStyled";
 import { connect } from "react-redux";
-import { addCourse } from "../../../services/coursesAPI";
 import LoaderComponent from "../../loader/Loader";
+import { addCourseOperation } from "../../../redux/courses/coursesOperations";
+import { isLoadingSelector } from "../../../redux/courses/coursesSelectors";
 
 const toDataURL = (element) => {
   return new Promise((resolve) => {
@@ -22,13 +21,9 @@ const initialState = {
   modules: [],
 };
 
-const CoursesForm = ({
-  createCourse,
-  setLoader,
-  isLoading,
-  closeCourseForm,
-}) => {
+const CoursesForm = ({ addCourseOperation, isLoading, closeCourseForm }) => {
   const [course, setCourse] = useState({ ...initialState });
+  const [err, setErr] = useState("");
   const { language } = useContext(CustomLanguage);
 
   const onHandleChange = (e) => {
@@ -41,24 +36,21 @@ const CoursesForm = ({
       setCourse((prev) => ({ ...prev, avatar: data }))
     );
   };
+
   const onHandleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoader();
-      const id = await addCourse(course);
-      createCourse({ id, ...course });
-    } catch (error) {
-    } finally {
-      setLoader();
+      await addCourseOperation(course);
       closeCourseForm();
+    } catch (error) {
+      setErr("Something went wrong!");
     }
-
-    setCourse({ ...initialState });
   };
 
   return (
     <>
       {isLoading && <LoaderComponent />}
+      {err && <p>{err}</p>}
       <CourseFormContainer onSubmit={onHandleSubmit}>
         <div className='coursesFormAvatarContainer'>
           <div className='avatarImageBlock'>
@@ -112,13 +104,11 @@ const CoursesForm = ({
 
 const mapStateToProps = (state) => {
   return {
-    isLoading: state.courses.isLoading,
+    isLoading: isLoadingSelector(state),
   };
 };
 
-export default connect(mapStateToProps, { createCourse, setLoader })(
-  CoursesForm
-);
+export default connect(mapStateToProps, { addCourseOperation })(CoursesForm);
 
 // class CoursesForm extends Component {
 //   state = {

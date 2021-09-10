@@ -3,6 +3,7 @@ const SET_LOADER = "@/courses/setLoader";
 const GET_COURSES = "@/courses/getCourses";
 const SET_ERROR = "@/courses/setError";
 const RESET_ERROR = "@/courses/resetError";
+const SET_FILTER = "@/courses/setFilter";
 
 const createCourse = (course) => {
   return {
@@ -30,7 +31,25 @@ const setError = (error) => ({
 const resetError = () => ({
   type: RESET_ERROR,
 });
+const setFilter = (value) => ({
+  type: SET_FILTER,
+  payload: value,
+});
 
-export { CREATE_COURSE, SET_LOADER, GET_COURSES, SET_ERROR, RESET_ERROR };
+export {
+  CREATE_COURSE,
+  SET_LOADER,
+  GET_COURSES,
+  SET_ERROR,
+  RESET_ERROR,
+  SET_FILTER,
+};
 
-export { createCourse, setLoader, getCoursesAction, setError, resetError };
+export {
+  createCourse,
+  setLoader,
+  getCoursesAction,
+  setError,
+  resetError,
+  setFilter,
+};

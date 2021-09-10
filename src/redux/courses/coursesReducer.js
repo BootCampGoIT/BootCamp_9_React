@@ -4,6 +4,7 @@ import {
   GET_COURSES,
   RESET_ERROR,
   SET_ERROR,
+  SET_FILTER,
   SET_LOADER,
 } from "./coursesActions";
 
@@ -40,8 +41,19 @@ export const loaderReducer = (state = false, { type }) => {
   }
 };
 
+export const filterReducer = (state = "", { type, payload }) => {
+  switch (type) {
+    case SET_FILTER:
+      return payload;
+
+    default:
+      return state;
+  }
+};
+
 export const coursesReducer = combineReducers({
   items: coursesItems,
   error: errorReducer,
   isLoading: loaderReducer,
+  filter: filterReducer,
 });

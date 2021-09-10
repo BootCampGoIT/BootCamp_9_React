@@ -4,12 +4,20 @@ import CoursesListItem from "./coursesListItem/CoursesListItem";
 import { CoursesListStyled } from "./CoursesListStyled";
 import { useSelector, useDispatch } from "react-redux";
 import { getCoursesOperation } from "../../../redux/courses/coursesOperations";
-import { resetError } from "../../../redux/courses/coursesActions";
+import { resetError, setFilter } from "../../../redux/courses/coursesActions";
+import {
+  coursesErrorSelector,
+  coursesFilteredItemsSelector,
+  coursesFilterSelector,
+
+} from "../../../redux/courses/coursesSelectors";
+import Filter from "../../filter/Filter";
 
 const CoursesList = ({ children }) => {
   const dispatch = useDispatch();
-  const courses = useSelector((state) => state.courses.items);
-  const error = useSelector((state) => state.courses.error);
+  const courses = useSelector(coursesFilteredItemsSelector);
+  const error = useSelector(coursesErrorSelector);
+  const filter = useSelector(coursesFilterSelector);
 
   useEffect(() => {
     dispatch(getCoursesOperation());
@@ -18,19 +26,24 @@ const CoursesList = ({ children }) => {
     };
   }, [dispatch, error]);
 
+
+
   return (
-    <CoursesListStyled>
-      {!error ? (
-        <>
-          {children}
-          {courses.map((course) => (
-            <CoursesListItem {...course} key={course.id} />
-          ))}
-        </>
-      ) : (
-        <p>{error}</p>
-      )}
-    </CoursesListStyled>
+    <>
+      <Filter filter={filter} setFilter={setFilter} />
+      <CoursesListStyled>
+        {!error ? (
+          <>
+            {children}
+            {courses.map((course) => (
+              <CoursesListItem {...course} key={course.id} />
+            ))}
+          </>
+        ) : (
+          <p>{error}</p>
+        )}
+      </CoursesListStyled>
+    </>
   );
 };
 
