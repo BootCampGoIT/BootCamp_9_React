@@ -1,14 +1,18 @@
 import styled from "styled-components";
 
 export const AdminPageContainer = styled.div`
+  .adminHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .navList {
     display: flex;
-    flex-direction: row;
     align-items: center;
+    height: 100%;
   }
 
   .navItem {
-    margin-bottom: 10px;
   }
   .navItem:not(:last-child) {
     margin-right: 20px;

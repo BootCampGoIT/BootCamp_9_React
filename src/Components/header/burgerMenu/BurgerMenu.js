@@ -1,24 +1,21 @@
 import React, { useState } from "react";
-import { BurgerMenuContainer, BurgerMenuContent } from "./BurgerMenuStyled";
-import sprite from "../../../icons/header/sprite.svg";
+import { BurgerMenuContent } from "./BurgerMenuStyled";
 import Modal from "../../modal/Modal";
 import Navigation from "../navigation/Navigation";
-
 import Settings from "../settings/Settings";
+import Burger from "./burger/Burger";
 
 const BurgerMenu = () => {
   const [isBurgerMenuOpen, setBurgerMenuOpen] = useState(false);
-
   const toggleModal = () => setBurgerMenuOpen((prev) => !prev);
 
   return (
     <>
       <BurgerMenuContent>
-        <BurgerMenuContainer onClick={toggleModal}>
-          <svg className='headerBurger'>
-            <use href={sprite + "#icon-menu"} />
-          </svg>
-        </BurgerMenuContainer>
+        <Burger
+          isBurgerMenuOpen={isBurgerMenuOpen}
+          setBurgerMenuOpen={toggleModal}
+        />
         {isBurgerMenuOpen && (
           <Modal closeModal={toggleModal}>
             <div className='burgerBackdrop'>

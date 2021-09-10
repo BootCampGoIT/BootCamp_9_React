@@ -12,6 +12,7 @@ import { adminRoutes } from "../../routes/adminRoutes";
 import { AdminPageContainer } from "./AdminPageStyled";
 import CourseDetails from "../../Components/courses/courseDetails/CourseDetails";
 import GroupDetails from "../../Components/groups/groupDetails/GroupDetails";
+import Filter from "../../Components/filter/Filter";
 
 const AdminPage = () => {
   const match = useRouteMatch();
@@ -38,6 +39,7 @@ const AdminPage = () => {
           </li>
         ))}
       </ul>
+
       <Suspense fallback={<LoaderComponent />}>
         <Switch>
           <Route

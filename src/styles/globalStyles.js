@@ -29,27 +29,25 @@ button:hover {
 
 label {
     color: ${(props) => props.theme.colors.label};
+    outline: none;
     /* font-size: 16px; */
     /* line-height: 25px; */
 }
 ul {
     list-style: none;
 }
-/* p {
-    color: ${(props) => props.theme.colors.text}
-} */
 
 input, select {
     color: ${(props) => props.theme.colors.input};
     border: 1px solid ${(props) => props.theme.colors.main};
-    height: 25px;
+    height: 26px;
     border-radius: 16px;
     outline: none;
     padding: 0 12px;
     width: 100%;
-    font-size: 18px;
+    /* font-size: 18px; */
     margin: 8px 0;
-    line-height: 25px;
+   
 }
 
 input::-webkit-input-placeholder {

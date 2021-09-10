@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 const CoursesListItem = ({ id, avatar, name, deleteCourse }) => {
   const history = useHistory();
-  const deleteItem = () => deleteCourse(id);
 
   const openDetails = () => {
     history.push(history.location.pathname + `/${id}`);
@@ -21,14 +20,6 @@ const CoursesListItem = ({ id, avatar, name, deleteCourse }) => {
         <button type='button' onClick={openDetails}>
           Details
         </button>
-        {deleteCourse && (
-          <button
-            type='button'
-            onClick={deleteItem}
-            className='courseListItemTitle'>
-            Delete
-          </button>
-        )}
       </div>
     </CourseListItemContainer>
   );
