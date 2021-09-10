@@ -24,9 +24,4 @@ const signIn = async (user) => {
 
 export { signUp, signIn };
 
-// const authServices = {
-//     signUp,
-//     signIn
-// }
 
-// export default authServices;

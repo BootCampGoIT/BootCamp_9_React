@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { signIn, signUp } from "../../services/authAPI";
 import { AuthFormContainer } from "./AuthFormStyled";
 import sprite from "../../icons/auth/sprite.svg";
 import { useLocation } from "react-router-dom";
-import { signInAction, signUpAction } from "../../redux/auth/authActions";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signInOperation,
+  signUpOperation,
+} from "../../redux/auth/authOperations";
+import { authErrorSelector } from "../../redux/auth/authSelectors";
+import { resetError } from "../../redux/auth/authActions";
 
 const initialState = {
   email: "",
@@ -14,6 +19,7 @@ const initialState = {
 
 const AuthForm = () => {
   const [user, setUser] = useState(initialState);
+  const error = useSelector(authErrorSelector);
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -23,21 +29,19 @@ const AuthForm = () => {
     e.preventDefault();
     try {
       isSignUpForm()
-        ? await signUp(user).then((response) =>
-            dispatch(signUpAction(response.data))
-          )
-        : await signIn(user).then((response) =>
-            dispatch(signInAction(response.data))
-          );
+        ? await dispatch(signUpOperation(user))
+        : await dispatch(signInOperation(user));
     } catch (error) {}
   };
 
   const onHandleChange = (e) => {
     const { name, value } = e.target;
+    error && dispatch(resetError());
     setUser((prev) => ({ ...prev, [name]: value }));
   };
   return (
     <AuthFormContainer>
+      {error && <p>{error}</p>}
       <form onSubmit={onHandleSubmit} className='authForm'>
         <label className='authFormLabel'>
           Email

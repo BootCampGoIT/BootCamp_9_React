@@ -25,6 +25,7 @@ import { coursesReducer } from "./courses/coursesReducer";
 import { groupsReducer } from "./groups/groupsReducer";
 import { tasksReducer } from "./tasks/tasksReducer";
 import { authReducer } from "./auth/authReducer";
+import { persistStore } from 'redux-persist'
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
@@ -38,6 +39,8 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+export const persistor = persistStore(store);
 
 export default store;
 

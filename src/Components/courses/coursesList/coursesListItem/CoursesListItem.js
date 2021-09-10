@@ -16,7 +16,7 @@ const CoursesListItem = ({ id, avatar, name, deleteCourse }) => {
           <img src={avatar} alt={name} className='courseAvatar' />
         </div>
         <div className='courseListItemTitleBlock'>
-          <h2 className='courseListItemTitle'>{name}</h2>
+          <p className='courseListItemTitle'>{name}</p>
         </div>
         <button type='button' onClick={openDetails}>
           Details

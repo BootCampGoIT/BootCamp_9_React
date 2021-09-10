@@ -9,11 +9,6 @@ const TasksForm = () => {
     task: "",
   });
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.tasks.value);
-
-  const addNewValue = () => {
-    dispatch(addValue());
-  };
 
   const isTaskExist = useSelector((state) =>
     isTaskExistSelector(state, data.user)
@@ -32,10 +27,6 @@ const TasksForm = () => {
   };
   return (
     <>
-      <hr />
-      <span>{value}</span>
-      <button onClick={addNewValue}>Add</button>
-      <hr />
       <form onSubmit={onHandleSubmit}>
         <label>
           User:

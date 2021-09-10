@@ -7,7 +7,6 @@ import {
 import {
   memoFilter,
   memoTasksFilteredItemsSelector,
-  tasksFilteredItemsSelector,
 } from "../../redux/tasks/tasksSelectors";
 import Filter from "../filter/Filter";
 
@@ -17,11 +16,6 @@ const TasksList = () => {
   const deleteTask = (e) => {
     deleteTaskActionCreator(e.target.id);
   };
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.state.task === nextState.task)  return false 
-  // }
-  
 
   return (
     <>
