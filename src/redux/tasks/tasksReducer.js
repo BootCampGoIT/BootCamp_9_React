@@ -1,7 +1,8 @@
 import { createReducer, combineReducers } from "@reduxjs/toolkit";
+import { signOut } from "../auth/authActions";
 import {
   addTaskActionCreator,
-  addValue,
+  // addValue,
   deleteTaskActionCreator,
   setFilter,
 } from "./tasksActions";
@@ -10,20 +11,22 @@ const tasksItemsReducer = createReducer([], {
   [addTaskActionCreator]: (state, action) => [...state, action.payload],
   [deleteTaskActionCreator]: (state, action) =>
     state.filter((task) => task.id !== action.payload),
+  [signOut]: () => [],
 });
 
 const tasksFilterReducer = createReducer("", {
   [setFilter]: (_, action) => action.payload,
+  [signOut]: () => "",
 });
 
-export const valueReducer = createReducer(0, {
-  [addValue]: (state) => state + 1,
-});
+// export const valueReducer = createReducer(0, {
+//   [addValue]: (state) => state + 1,
+// });
 
 export const tasksReducer = combineReducers({
   items: tasksItemsReducer,
   filter: tasksFilterReducer,
-  value: valueReducer,
+  // value: valueReducer,
 });
 
 // ========= redux basic ====================

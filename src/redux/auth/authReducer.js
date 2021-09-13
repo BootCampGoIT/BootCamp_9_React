@@ -6,6 +6,7 @@ import {
   signInError,
   signInRequest,
   signInSuccess,
+  signOut,
   signUpError,
   signUpRequest,
   signUpSuccess,
@@ -22,18 +23,23 @@ export const tokensReducer = createReducer(
       tokenId: action.payload.idToken,
       refreshToken: action.payload.refreshToken,
     }),
+    [signOut]: () => ({}),
   }
 );
 
+const initialUserData = {
+  email: "",
+  surname: "",
+  firstName: "",
+  groupsMember: [],
+  birthday: "",
+  telegram: "",
+  git: "",
+};
+
 export const userReducer = createReducer(
   {
-    email: "",
-    surname: "",
-    firstName: "",
-    groupsMember: [],
-    birthday: "",
-    telegram: "",
-    git: "",
+    ...initialUserData,
   },
   {
     [signUpSuccess]: (state, action) => ({
@@ -44,6 +50,9 @@ export const userReducer = createReducer(
       ...state,
       email: action.payload.email,
     }),
+    [signOut]: () => ({
+      ...initialUserData,
+    }),
   }
 );
 
@@ -51,6 +60,7 @@ export const errorReducer = createReducer("", {
   [signUpError]: (_, action) => action.payload,
   [signInError]: (_, action) => action.payload,
   [resetError]: () => "",
+  [signOut]: "",
 });
 
 export const loaderReducer = createReducer(false, {
@@ -60,6 +70,7 @@ export const loaderReducer = createReducer(false, {
   [signInRequest]: () => true,
   [signInSuccess]: () => false,
   [signInError]: () => false,
+  [signOut]: false,
 });
 
 const tokensConfig = {

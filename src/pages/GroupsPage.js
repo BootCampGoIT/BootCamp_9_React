@@ -1,10 +1,16 @@
 import React from "react";
-import Groups from "../Components/groups/Groups";
+import GroupDetails from "../Components/groups/groupDetails/GroupDetails";
+import { useRouteMatch, Switch, Route } from "react-router-dom";
+import GroupsList from "../Components/groups/groupsList/GroupsList";
 
 const GroupsPage = () => {
+  const match = useRouteMatch();
   return (
     <>
-      <Groups />
+      <Switch>
+        <Route path={match.path + `/:groupId`} exact component={GroupDetails} />
+        <Route path={match.path} exact component={GroupsList} />
+      </Switch>
     </>
   );
 };

@@ -11,6 +11,18 @@ const signUp = async (user) => {
   }
 };
 
+const registerDB = async (localId, email, idToken) => {
+  try {
+    return await axios.post(
+      process.env.REACT_APP_BASE_URL +
+        `/users/${localId}/profile.json?auth=${idToken}`,
+      { email }
+    );
+  } catch (error) {
+    throw new Error(error.response.data.error.message);
+  }
+};
+
 const signIn = async (user) => {
   try {
     return await axios.post(process.env.REACT_APP_SIGNIN_URL, {
@@ -22,6 +34,4 @@ const signIn = async (user) => {
   }
 };
 
-export { signUp, signIn };
-
-
+export { signUp, signIn, registerDB };

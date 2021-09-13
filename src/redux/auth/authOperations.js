@@ -1,4 +1,4 @@
-import { signIn, signUp } from "../../services/authAPI";
+import { registerDB, signIn, signUp } from "../../services/authAPI";
 import {
   signInError,
   signInRequest,
@@ -12,6 +12,8 @@ export const signUpOperation = (user) => async (dispatch) => {
   dispatch(signUpRequest());
   try {
     const response = await signUp(user);
+    registerDB(response.data.localId, response.data.email, response.data.idToken);
+    console.log("response :>> ", response);
     dispatch(signUpSuccess(response.data));
   } catch (error) {
     dispatch(signUpError(error.message));

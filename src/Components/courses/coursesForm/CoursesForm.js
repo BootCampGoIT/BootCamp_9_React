@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import LoaderComponent from "../../loader/Loader";
 import { addCourseOperation } from "../../../redux/courses/coursesOperations";
 import { isLoadingSelector } from "../../../redux/courses/coursesSelectors";
+import { useDispatch } from "react-redux";
 
 const toDataURL = (element) => {
   return new Promise((resolve) => {
@@ -22,6 +23,7 @@ const initialState = {
 };
 
 const CoursesForm = ({ addCourseOperation, isLoading, closeCourseForm }) => {
+  const dispatch = useDispatch();
   const [course, setCourse] = useState({ ...initialState });
   const [err, setErr] = useState("");
   const { language } = useContext(CustomLanguage);
@@ -40,8 +42,8 @@ const CoursesForm = ({ addCourseOperation, isLoading, closeCourseForm }) => {
   const onHandleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addCourseOperation(course);
-      closeCourseForm();
+      await dispatch(addCourseOperation(course));
+      // closeCourseForm();
     } catch (error) {
       setErr("Something went wrong!");
     }

@@ -37,29 +37,4 @@ const TasksPage = () => {
 
 export default TasksPage;
 
-// let currentValue = { x: 10, getResult: console.log };
-// // ==========================
-// function memo(currentValue) {
-//   return function (newValue = currentValue) {
-//     if (currentValue === newValue) {
-//       console.log(newValue.x);
-//     } else {
-//       for (let i = 0; i < 999999999; i += 1) i++;
-//       console.log("newValue");
-//       console.log(newValue.x);
-//       currentValue = newValue;
-//     }
-//   };
-// }
 
-// // =====================
-// const data = memo(currentValue);
-
-// data();
-// data({ x: 11, getResult: console.log });
-// data();
-// data();
-// data({ x: 12, getResult: console.log });
-// data();
-// data();
-// data();

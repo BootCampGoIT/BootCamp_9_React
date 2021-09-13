@@ -14,6 +14,8 @@ export const coursesItems = (state = [], { type, payload }) => {
       return [...state, payload];
     case GET_COURSES:
       return payload;
+    case "@/auth/signOut":
+      return [];
 
     default:
       return state;
@@ -26,6 +28,8 @@ export const errorReducer = (state = "", action) => {
       return action.payload;
     case RESET_ERROR:
       return "";
+    case "@/auth/signOut":
+      return "";
     default:
       return state;
   }
@@ -35,6 +39,8 @@ export const loaderReducer = (state = false, { type }) => {
   switch (type) {
     case SET_LOADER:
       return !state;
+    case "@/auth/signOut":
+      return false;
 
     default:
       return state;
@@ -45,6 +51,8 @@ export const filterReducer = (state = "", { type, payload }) => {
   switch (type) {
     case SET_FILTER:
       return payload;
+    case "@/auth/signOut":
+      return "";
 
     default:
       return state;

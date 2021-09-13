@@ -1,27 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGroupsOperation } from "../../../redux/groups/groupsOperations";
-import LoaderComponent from "../../loader/Loader";
 import { GroupsListContainer } from "./GroupsListStyled";
+import { resetError } from "../../../redux/groups/groupsActions";
+import {
+  groupsErrorSelector,
+  groupsItemsSelector,
+} from "../../../redux/groups/groupsSelectors";
+import GroupsListItem from "./groupsListItem/GroupsListItem";
 
-const GroupsList = () => {
-  const groups = useSelector((state) => state.groups.items);
+const GroupsList = ({ children }) => {
   const dispatch = useDispatch();
+  const groups = useSelector(groupsItemsSelector);
+  const error = useSelector(groupsErrorSelector);
 
   useEffect(() => {
     dispatch(getGroupsOperation());
   }, [dispatch]);
 
   return (
-    <GroupsListContainer>
-      {groups === null ? (
-        <LoaderComponent />
-      ) : groups ? (
-        groups.map((group, idx) => <li key={idx}>{group.name}</li>)
-      ) : (
-        <p>No Data</p>
-      )}
-    </GroupsListContainer>
+    <>
+      <GroupsListContainer>
+        {children}
+        {!error && groups ? (
+          <>
+            {groups.map((group) => (
+              <GroupsListItem {...group} key={group.id} />
+            ))}
+          </>
+        ) : (
+          <p>{error}</p>
+        )}
+      </GroupsListContainer>
+    </>
   );
 };
 

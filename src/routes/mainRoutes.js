@@ -9,6 +9,8 @@ export const mainRoutes = [
     component: lazy(() =>
       import("../pages/HomePage" /* webpackChunkName: "HomePage" */)
     ),
+    isPrivate: false,
+    isRestricted: false,
   },
   {
     name: "courses",
@@ -17,6 +19,8 @@ export const mainRoutes = [
     component: lazy(() =>
       import("../pages/CoursesPage" /* webpackChunkName: "CoursesPage" */)
     ),
+    isPrivate: true,
+    isRestricted: false,
   },
   // {
   //   name: "profile",
@@ -31,6 +35,8 @@ export const mainRoutes = [
     component: lazy(() =>
       import("../pages/GroupsPage" /* webpackChunkName: "GroupsPage" */)
     ),
+    isPrivate: true,
+    isRestricted: false,
   },
   {
     name: "tasks",
@@ -39,6 +45,8 @@ export const mainRoutes = [
     component: lazy(() =>
       import("../pages/TasksPage" /* webpackChunkName: "TasksPage" */)
     ),
+    isPrivate: true,
+    isRestricted: false,
   },
   {
     name: "admin",
@@ -47,6 +55,8 @@ export const mainRoutes = [
     component: lazy(() =>
       import("../pages/AdminPage/AdminPage" /* webpackChunkName: "AdminPage" */)
     ),
+    isPrivate: true,
+    isRestricted: false,
   },
   {
     name: "signup",
@@ -55,6 +65,8 @@ export const mainRoutes = [
     component: lazy(() =>
       import("../pages/AuthPage/AuthPage" /* webpackChunkName: "AuthPage" */)
     ),
+    isPrivate: false,
+    isRestricted: true,
   },
   {
     name: "signin",
@@ -63,5 +75,7 @@ export const mainRoutes = [
     component: lazy(() =>
       import("../pages/AuthPage/AuthPage" /* webpackChunkName: "AuthPage" */)
     ),
+    isPrivate: false,
+    isRestricted: true,
   },
 ];

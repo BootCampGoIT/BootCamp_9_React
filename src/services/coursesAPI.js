@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const getCourses = async () => {
+export const getCourses = async (tokenId) => {
   try {
     const response = await axios.get(
-      process.env.REACT_APP_BASE_URL + `/courses.json`
+      process.env.REACT_APP_BASE_URL + `/courses.json?auth=${tokenId}`
     );
     const courses = Object.keys(response.data).map((key) => ({
       ...response.data[key],
@@ -39,10 +39,10 @@ export const patchCourseByID = async (courseEdited) => {
   }
 };
 
-export const addCourse = async (course) => {
+export const addCourse = async (course, tokenId) => {;
   try {
     const response = await axios.post(
-      process.env.REACT_APP_BASE_URL + `/courses.json`,
+      process.env.REACT_APP_BASE_URL + `/courses.json?auth=${tokenId}`,
       course
     );
     return response.data.name;

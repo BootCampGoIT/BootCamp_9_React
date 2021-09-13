@@ -43,6 +43,9 @@ const Header = () => {
               <use href={sprite + "#icon-dots-three-vertical"} />
             </svg>
           </div>
+          <div className="headerProfile">
+            
+          </div>
         </div>
       )}
       {state.isSettingsOpen && (

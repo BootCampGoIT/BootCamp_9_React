@@ -6,37 +6,10 @@ import CoursesList from "../coursesList/CoursesList";
 import AddNewItem from "./addNewItem/AddNewItem";
 import { CourseRedactorContainer } from "./CourseRedactorStyled";
 
-const initialState = {
-  courses: [],
-  error: "",
-};
-
 const CourseRedactor = () => {
-  const [state, setState] = useState(() => ({ ...initialState }));
   const [isCourseFormOpen, setCourseFormOpen] = useState(false);
 
-  useEffect(() => {
-    const getAllCourses = async () => {
-      try {
-        const courses = await getCourses();
-        setState((prev) => ({ ...prev, courses }));
-      } catch (error) {
-        setState((prev) => ({ ...prev, error: "No matches" }));
-      }
-    };
-    getAllCourses();
-  }, []);
-
   const toggleCourseForm = () => setCourseFormOpen((prev) => !prev);
-
-  // const patchCourse = (newCourse) => {
-  //   setState((prev) => ({
-  //     ...prev,
-  //     courses: prev.courses.map((course) =>
-  //       course.id === newCourse.id ? newCourse : course
-  //     ),
-  //   }));
-  // };
 
   return (
     <CourseRedactorContainer>

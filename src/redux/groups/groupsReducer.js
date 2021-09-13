@@ -1,37 +1,39 @@
+import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { ADD_GROUP, GET_GROUPS, SET_ERROR, SET_LOADER } from "./groupsActions";
+import { signOut } from "../auth/authActions";
+import {
+  createGroup,
+  getGroups,
+  resetError,
+  setError,
+  setFilter,
+  setLoader,
+} from "./groupsActions";
 
-export const groupsItemsReducer = (state = null, action) => {
-  switch (action.type) {
-    case GET_GROUPS:
-      return action.payload;
-    case ADD_GROUP:
-      return [...state, action.payload];
-    default:
-      return state;
-  }
-};
+export const groupsItemsReducer = createReducer(null, {
+  [getGroups]: (_, { payload }) => payload,
+  [createGroup]: (state, { payload }) => [...state, payload],
+  [signOut]: () => null,
+});
 
-export const groupsErrorReducer = (state = "", action) => {
-  switch (action.type) {
-    case SET_ERROR:
-      return action.payload;
-    default:
-      return state;
-  }
-};
+export const groupsErrorReducer = createReducer("", {
+  [setError]: (_, { payload }) => payload,
+  [resetError]: () => "[...state, payload]",
+  [signOut]: "",
+});
 
-export const groupsLoaderReducer = (state = false, action) => {
-  switch (action.type) {
-    case SET_LOADER:
-      return !state;
-    default:
-      return state;
-  }
-};
+export const groupsLoaderReducer = createReducer(false, {
+  [setLoader]: (state) => !state,
+  [signOut]: false,
+});
+export const groupsFilterReducer = createReducer("", {
+  [setFilter]: (_, { payload }) => payload,
+  [signOut]: "",
+});
 
 export const groupsReducer = combineReducers({
   items: groupsItemsReducer,
   error: groupsErrorReducer,
   isLoading: groupsLoaderReducer,
+  filter: groupsFilterReducer,
 });

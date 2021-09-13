@@ -1,10 +1,16 @@
 import { addCourse, getCourses } from "../../services/coursesAPI";
-import { createCourse, getCoursesAction, setError, setLoader } from "./coursesActions";
+import {
+  createCourse,
+  getCoursesAction,
+  setError,
+  setLoader,
+} from "./coursesActions";
 
-export const getCoursesOperation = () => async (dispatch) => {
+export const getCoursesOperation = () => async (dispatch, getState) => {
+  const tokenId = getState().auth.tokens.tokenId;
   dispatch(setLoader());
   try {
-    const courses = await getCourses();
+    const courses = await getCourses(tokenId);
     dispatch(getCoursesAction(courses));
   } catch (error) {
     dispatch(setError(error.message));
@@ -13,11 +19,12 @@ export const getCoursesOperation = () => async (dispatch) => {
   }
 };
 
-export const addCourseOperation = (course) => async (dispatch) => {
+export const addCourseOperation = (course) => async (dispatch, getState) => {
+  const tokenId = getState().auth.tokens.tokenId;
   dispatch(setLoader());
   try {
-    const id = await addCourse(course);
-    dispatch(createCourse({id, ...course}));
+    const id = await addCourse(course, tokenId);
+    dispatch(createCourse({ id, ...course }));
   } catch (error) {
     dispatch(setError(error.message));
   } finally {

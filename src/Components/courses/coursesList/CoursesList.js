@@ -9,7 +9,6 @@ import {
   coursesErrorSelector,
   coursesFilteredItemsSelector,
   coursesFilterSelector,
-
 } from "../../../redux/courses/coursesSelectors";
 import Filter from "../../filter/Filter";
 
@@ -26,15 +25,13 @@ const CoursesList = ({ children }) => {
     };
   }, [dispatch, error]);
 
-
-
   return (
     <>
       <Filter filter={filter} setFilter={setFilter} />
       <CoursesListStyled>
+        {children}
         {!error ? (
           <>
-            {children}
             {courses.map((course) => (
               <CoursesListItem {...course} key={course.id} />
             ))}
