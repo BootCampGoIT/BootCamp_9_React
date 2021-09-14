@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { getCourses } from "../../../services/coursesAPI";
+import React, { useState } from "react";
+import AddNewItem from "../../addNewItem/AddNewItem";
 import Modal from "../../modal/Modal";
 import CoursesForm from "../coursesForm/CoursesForm";
 import CoursesList from "../coursesList/CoursesList";
-import AddNewItem from "./addNewItem/AddNewItem";
+
 import { CourseRedactorContainer } from "./CourseRedactorStyled";
 
 const CourseRedactor = () => {

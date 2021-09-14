@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import AddNewItem from "../../courses/courseRedactor/addNewItem/AddNewItem";
+import AddNewItem from "../../addNewItem/AddNewItem";
+
 import Modal from "../../modal/Modal";
 import GroupsForm from "../groupsForm/GroupsForm";
 import GroupsList from "../groupsList/GroupsList";

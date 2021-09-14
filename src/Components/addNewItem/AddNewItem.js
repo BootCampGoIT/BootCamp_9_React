@@ -1,6 +1,6 @@
 import React from "react";
 import { AddNewItemContainer } from "./AddNewItemStyled";
-import sprite from "../../../../icons/courses/spite.svg";
+import sprite from "../../icons/courses/spite.svg";
 
 const AddNewItem = ({ addItem }) => {
   return (

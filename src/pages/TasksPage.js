@@ -1,33 +1,13 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 
 import TasksForm from "../Components/tasks/TasksForm";
 import TasksList from "../Components/tasks/TasksList";
 
 const TasksPage = () => {
-  const [count, setCount] = useState(0);
   const [isOpen, setOpen] = useState(false);
-
-  const countWithCircle = () => {
-    setCount((prev) => prev + 1);
-  };
-
-  const result = useMemo(() => {
-    for (let i = 0; i < 999999999; i += 1) i++;
-    console.log("getCount");
-    return count;
-  }, [count]);
 
   return (
     <>
-      <button type='button' onClick={countWithCircle}>
-        AddCount
-      </button>
-      <p>{result}</p>
-      <hr />
-      <button type='button' onClick={() => setOpen((prev) => !prev)}>
-        {isOpen ? "close" : "Open"}
-      </button>
-
       {isOpen && <TasksForm />}
 
       <TasksList />
@@ -36,5 +16,3 @@ const TasksPage = () => {
 };
 
 export default TasksPage;
-
-

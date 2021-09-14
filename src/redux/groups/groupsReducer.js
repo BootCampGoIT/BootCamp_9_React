@@ -10,7 +10,7 @@ import {
   setLoader,
 } from "./groupsActions";
 
-export const groupsItemsReducer = createReducer(null, {
+export const groupsItemsReducer = createReducer([], {
   [getGroups]: (_, { payload }) => payload,
   [createGroup]: (state, { payload }) => [...state, payload],
   [signOut]: () => null,
@@ -18,7 +18,7 @@ export const groupsItemsReducer = createReducer(null, {
 
 export const groupsErrorReducer = createReducer("", {
   [setError]: (_, { payload }) => payload,
-  [resetError]: () => "[...state, payload]",
+  [resetError]: (state, { payload }) => [...state, payload],
   [signOut]: "",
 });
 

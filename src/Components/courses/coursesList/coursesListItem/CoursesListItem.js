@@ -2,7 +2,7 @@ import React from "react";
 import { CourseListItemContainer } from "./CourseListItemStyled";
 import { useHistory } from "react-router-dom";
 
-const CoursesListItem = ({ id, avatar, name, deleteCourse }) => {
+const CoursesListItem = ({ id, avatar, name }) => {
   const history = useHistory();
 
   const openDetails = () => {
